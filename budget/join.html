@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Budget – Invitation</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 30rem; margin: 0 auto; padding: 2rem 1.25rem; text-align: center; }
+    h1 { font-size: 1.4rem; }
+    a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
+    a.link { display: block; margin: 0.5rem 0; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Budget</h1>
+  <p id="message">Ouverture de l'invitation… / Opening the invitation…</p>
+  <div id="actions" hidden>
+    <a class="button" id="play" href="#">Installer l'application Android / Get the Android app</a>
+    <a class="link" id="web" href="#">Ouvrir dans le navigateur / Open in the browser</a>
+  </div>
+  <noscript><p>JavaScript est nécessaire pour ouvrir l'invitation. / JavaScript is needed to open the invitation.</p></noscript>
+  <script>
+    (function () {
+      // Invitation link of the Budget app: https://pmeig.github.io/budget/join?session=<name>&token=<token>
+      //  - Android with the app: the link never reaches this page (Android App Links open the app directly,
+      //    verified by /.well-known/assetlinks.json);
+      //  - Android without the app: Google Play, the invitation travels in the `referrer` of the store link and the app reads
+      //    it once after the install;
+      //  - iPhone, computer: the web app (PWA), which keeps the invitation until the user has signed in or signed up.
+      var query = new URLSearchParams(location.search);
+      var session = query.get('session');
+      var token = query.get('token');
+      var message = document.getElementById('message');
+      if (!session || !token) {
+        message.textContent = "Lien d'invitation incomplet. / Incomplete invitation link.";
+        return;
+      }
+      var carried = 'session=' + encodeURIComponent(session) + '&token=' + encodeURIComponent(token);
+      var play = 'https://play.google.com/store/apps/details?id=com.pmeig.budget&referrer=' + encodeURIComponent(carried);
+      var web = 'https://pmeig-budget.duckdns.org:18443/app/join?' + carried;
+      document.getElementById('play').href = play;
+      document.getElementById('web').href = web;
+      document.getElementById('actions').hidden = false;
+      var android = /Android/i.test(navigator.userAgent);
+      message.textContent = android
+        ? "Installation de l'application… / Opening Google Play…"
+        : "Ouverture de l'application web… / Opening the web app…";
+      location.replace(android ? play : web);
+    })();
+  </script>
+</body>
+</html>
