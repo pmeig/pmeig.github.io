@@ -17,12 +17,12 @@
 </head>
 <body>
   <h1>Budget</h1>
-  <p id="message">Ouverture de l'invitation… / Opening the invitation…</p>
+  <p id="message">Ouverture de l’invitation… / Opening the invitation…</p>
   <div id="actions" hidden>
-    <a class="button" id="play" href="#">Installer l'application Android / Get the Android app</a>
+    <a class="button" id="play" href="#">Installer l’application Android / Get the Android app</a>
     <a class="link" id="web" href="#">Ouvrir dans le navigateur / Open in the browser</a>
   </div>
-  <noscript><p>JavaScript est nécessaire pour ouvrir l'invitation. / JavaScript is needed to open the invitation.</p></noscript>
+  <noscript><p>JavaScript est nécessaire pour ouvrir l’invitation. / JavaScript is required to open the invitation.</p></noscript>
   <script>
     (function () {
       // Invitation link of the Budget app: https://pmeig.github.io/budget/join?session=<name>&token=<token>
@@ -36,7 +36,7 @@
       var token = query.get('token');
       var message = document.getElementById('message');
       if (!session || !token) {
-        message.textContent = "Lien d'invitation incomplet. / Incomplete invitation link.";
+        message.textContent = "Ce lien d’invitation est incomplet. / This invitation link is incomplete.";
         return;
       }
       var carried = 'session=' + encodeURIComponent(session) + '&token=' + encodeURIComponent(token);
@@ -47,8 +47,8 @@
       document.getElementById('actions').hidden = false;
       var android = /Android/i.test(navigator.userAgent);
       message.textContent = android
-        ? "Installation de l'application… / Opening Google Play…"
-        : "Ouverture de l'application web… / Opening the web app…";
+        ? "Ouverture de Google Play… / Opening Google Play…"
+        : "Ouverture de l’application web… / Opening the web app…";
       location.replace(android ? play : web);
     })();
   </script>
