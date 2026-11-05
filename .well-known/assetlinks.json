@@ -1,1 +1,4 @@
-[{"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"com.pmeig.budget","sha256_cert_fingerprints":["2A:70:E2:FD:9C:93:6E:03:A3:23:6D:C7:FD:93:B5:85:29:04:CF:32:E4:A8:BB:09:2D:02:10:33:47:6A:4C:E5"]}}]
+[
+  {"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"com.pmeig.budget","sha256_cert_fingerprints":["2A:70:E2:FD:9C:93:6E:03:A3:23:6D:C7:FD:93:B5:85:29:04:CF:32:E4:A8:BB:09:2D:02:10:33:47:6A:4C:E5"]}},
+  {"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"com.pmeig.cooking","sha256_cert_fingerprints":["D1:6C:8F:89:5C:89:C2:50:69:F1:07:94:43:D3:C4:E4:2B:71:DF:CF:8F:5D:26:CD:58:93:DB:6F:FC:2A:0F:1F"]}}
+]
