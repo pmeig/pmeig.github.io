@@ -22,7 +22,7 @@
 
   <h2>Données collectées (uniquement avec un compte)</h2>
   <ul>
-    <li><strong>Adresse e-mail</strong> et <strong>nom affiché</strong> : pour vous connecter, confirmer votre adresse et vous envoyer les e-mails de service (confirmation, réinitialisation du mot de passe).</li>
+    <li><strong>Adresse e-mail</strong> et <strong>nom affiché</strong> : pour vous connecter et vous envoyer l’e-mail de service de réinitialisation du mot de passe.</li>
     <li><strong>Mot de passe</strong> : conservé uniquement sous forme de hachage (scrypt). Le mot de passe en clair n’est jamais stocké ni journalisé.</li>
     <li><strong>Vos recettes</strong> : titres, descriptions, ingrédients, étapes, étiquettes, notes, ainsi que les ingrédients, allergènes et étiquettes personnalisés que vous créez.</li>
     <li><strong>Vos groupes</strong> : nom, couleur, membres, rôles, invitations envoyées et reçues, recettes partagées dans un groupe.</li>
@@ -34,7 +34,7 @@
   <p>Vos recettes sont conservées dans une base locale de l’application, utilisable hors ligne. Le jeton de connexion est chiffré avec une clé de l’Android Keystore. Le mot de passe n’est pas conservé sur le téléphone.</p>
 
   <h2>Serveur et transmission</h2>
-  <p>Le serveur est auto-hébergé par l’auteur, sur sa propre machine virtuelle. Les échanges entre l’application et le serveur sont chiffrés en transit (HTTPS). Les e-mails de service sont envoyés par un serveur de messagerie (SMTP) configuré par l’auteur.</p>
+  <p>Le serveur est auto-hébergé par l’auteur, sur sa propre machine virtuelle. Les échanges entre l’application et le serveur sont chiffrés en transit (HTTPS). Le seul e-mail envoyé est celui de réinitialisation du mot de passe ; l’inscription n’en envoie aucun. Il passe par un serveur de messagerie (SMTP) configuré par l’auteur.</p>
 
   <h2>Partage</h2>
   <p>Vos données ne sont ni vendues, ni louées, ni transmises à des tiers, et aucun outil de statistiques ou de publicité n’est intégré. Vos recettes ne sont visibles que de vous et des membres des groupes dans lesquels vous les partagez : ils voient alors leur contenu et votre nom affiché.</p>
@@ -60,7 +60,7 @@
 
   <h2>Data collected (only with an account)</h2>
   <ul>
-    <li><strong>Email address</strong> and <strong>display name</strong>: to sign you in, confirm your address and send you service emails (confirmation, password reset).</li>
+    <li><strong>Email address</strong> and <strong>display name</strong>: to sign you in and to send you the password-reset email.</li>
     <li><strong>Password</strong>: stored only as a hash (scrypt). The plain password is never stored or logged.</li>
     <li><strong>Your recipes</strong>: titles, descriptions, ingredients, steps, tags, notes, and the custom ingredients, allergens and tags you create.</li>
     <li><strong>Your groups</strong>: name, colour, members, roles, invitations sent and received, recipes shared in a group.</li>
@@ -72,7 +72,7 @@
   <p>Your recipes are kept in a local database of the app, usable offline. The sign-in token is encrypted with a key of the Android Keystore. The password is not kept on the phone.</p>
 
   <h2>Server and transmission</h2>
-  <p>The server is self-hosted by the author, on his own virtual machine. Traffic between the app and the server is encrypted in transit (HTTPS). Service emails are sent through a mail server (SMTP) set up by the author.</p>
+  <p>The server is self-hosted by the author, on his own virtual machine. Traffic between the app and the server is encrypted in transit (HTTPS). The only email sent is the password-reset email; sign-up sends none. It goes through a mail server (SMTP) set up by the author.</p>
 
   <h2>Sharing</h2>
   <p>Your data is not sold, rented or passed to third parties, and no analytics or advertising tool is built in. Your recipes are visible only to you and to the members of the groups where you share them: they then see the content and your display name.</p>
