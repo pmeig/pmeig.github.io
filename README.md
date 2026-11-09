@@ -5,6 +5,7 @@ reachable on port 18443 (shared IPv4 of the box), and Android only verifies App 
 
 | Path | What |
 |---|---|
+| `/cooking/join` | Mail link landing page of Cooking (password reset): on Android it redirects to Google Play, other devices see a page with the Google Play button (no token, no personal data in the URL) |
 | `/budget/join?session=…&token=…` | Invitation relay: Android without the app goes to Google Play (the invitation travels in the `referrer`), iPhone and computers go to the web app (PWA) |
 | `/.well-known/assetlinks.json` | Android App Links verification: the link opens the app directly when it is installed (SHA-256 of the app signing certificate) |
 | `/budget/privacy.html` | Privacy policy (source of truth; it was removed from `web/public/` of pmeig/budget) |
