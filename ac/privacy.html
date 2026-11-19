@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC – Confidentialité / Privacy</title>
+  <meta name="robots" content="index, follow">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 46rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 1.6rem; }
+    nav a { margin-right: 1rem; display: inline-block; padding: 0.5rem 0; } hr { margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+<nav><a href="#fr">Français</a><a href="#en">English</a></nav>
+
+<main>
+<section id="fr" lang="fr">
+  <h1>AC – Politique de confidentialité</h1>
+  <p>AC est un assistant personnel : vous échangez avec lui depuis une application web, et il répond grâce à l’outil d’intelligence artificielle de <strong>votre propre ordinateur</strong> (Claude Code ou GitHub Copilot). Un seul serveur central, exploité par l’auteur, Pierrick (pmeig), relie vos appareils. Aucune publicité, aucune statistique d’usage, aucune revente de données. Cette page décrit ce que fait AC aujourd’hui ; ce n’est pas un conseil juridique.</p>
+
+  <h2>Comptes et appareils</h2>
+  <ul>
+    <li><strong>Compte sur invitation</strong> : on ne s’inscrit pas librement. L’administrateur du serveur vous invite et vous remet un code à usage unique, valable 24 heures.</li>
+    <li><strong>Ce qui est conservé sur vous</strong> : un <strong>nom</strong> (celui que vous choisissez), un rôle (propriétaire, administrateur ou membre) et les dates de création et d’éventuelle révocation. AC ne demande <strong>ni adresse e-mail, ni mot de passe</strong> : votre identité est celle de vos appareils appairés.</li>
+    <li><strong>Appareils</strong> : pour chaque appareil appairé, le serveur garde un nom, la plateforme, la langue et les dates de première et de dernière connexion. Le jeton de connexion n’est conservé que sous forme d’empreinte (SHA-256), jamais en clair ; les codes d’appairage aussi.</li>
+  </ul>
+
+  <h2>Conversations</h2>
+  <p>Vos conversations, vos messages (les vôtres et les réponses) et le journal des événements qui les accompagne sont enregistrés <strong>sur le serveur, en clair</strong> (non chiffrés par l’application), pour qu’ils soient identiques sur tous vos appareils. Dans l’application, seul leur propriétaire peut les voir : un autre compte, même administrateur, n’y a pas accès. En revanche, l’administrateur du serveur, qui a accès à la machine et à sa base de données, <strong>peut techniquement les lire</strong>. N’écrivez pas à AC ce que vous ne voulez pas qu’il puisse lire.</p>
+
+  <h2>Exécuteurs</h2>
+  <p>Un <em>exécuteur</em> est le petit programme AC que vous installez sur votre ordinateur. Le serveur garde, pour chaque exécuteur : son nom, le nom de la machine, le système, l’architecture, les versions, la liste des outils d’IA détectés et leur état (installé, connecté…), la date de dernière connexion, et l’empreinte de son jeton. Vous choisissez qui peut l’utiliser : vous seul (par défaut), des personnes choisies, ou tous les comptes du serveur ; les conversations, elles, restent toujours privées. L’administrateur voit la liste de tous les exécuteurs (propriétaire, machine, en ligne ou non, mode de partage, état des outils) et peut en retirer un.</p>
+
+  <h2>Services tiers</h2>
+  <ul>
+    <li><strong>Votre outil d’IA</strong> : pour répondre, AC transmet vos messages à l’exécuteur de <strong>votre</strong> ordinateur, qui les confie à l’outil que vous y avez installé, Anthropic Claude Code ou GitHub Copilot, avec <strong>votre</strong> compte chez ce fournisseur. Vos messages sont donc traités par ce fournisseur selon ses propres conditions et sa propre politique de confidentialité, hors du contrôle d’AC.</li>
+    <li><strong>Vos identifiants</strong> : AC ne voit, ne demande et ne conserve jamais votre mot de passe, votre jeton ni le code de connexion de Claude ; vous vous connectez vous-même sur la page du fournisseur et dans la fenêtre de l’outil. Pour Copilot, le code à usage unique à saisir sur GitHub transite par le serveur <strong>en mémoire seulement</strong> pour s’afficher dans votre application ; il n’est jamais écrit dans la base ni dans les journaux, et disparaît en 15 minutes au plus.</li>
+    <li><strong>Installation des outils</strong> : à votre demande, l’exécuteur installe l’outil depuis la source officielle de son éditeur (par exemple winget sous Windows).</li>
+    <li>Aucun autre service tiers : pas d’outil de statistiques, de publicité ou de suivi.</li>
+  </ul>
+
+  <h2>Sur votre appareil</h2>
+  <p>L’application web garde dans le stockage local du navigateur le jeton de votre appareil (pour rester connecté) et l’adresse de la page à rouvrir après la connexion ; rien n’y est envoyé à un tiers. La <strong>caméra</strong> n’est utilisée que pour scanner un code QR lors de l’association d’un exécuteur : aucune image ni vidéo n’est enregistrée ni envoyée. L’exécuteur garde sur votre ordinateur un fichier de configuration (accès réservé à vous) avec son jeton et l’adresse du serveur.</p>
+
+  <h2>Transmission et journaux</h2>
+  <p>Les échanges entre vos appareils, vos exécuteurs et le serveur passent par HTTPS / WSS (chiffrés en transit). Les journaux techniques du serveur n’enregistrent ni jeton, ni code d’appairage, ni texte de message.</p>
+
+  <h2>Conservation et suppression</h2>
+  <!-- TO UPDATE when self-service deletion ships -->
+  <p>Vos données sont conservées tant que votre compte existe. <strong>Aujourd’hui, il n’existe pas de suppression en libre-service dans l’application.</strong> Pour demander la suppression de votre compte, écrivez à l’adresse ci-dessous : l’administrateur retire votre compte (« révocation »). Cela a effet immédiat : vos appareils sont déconnectés, vos exécuteurs sont retirés et cessent de fonctionner, vos codes en attente sont annulés. <strong>En revanche, vos conversations et messages ne sont pas effacés à ce jour</strong> : ils restent dans la base du serveur, inaccessibles depuis l’application, ainsi que votre nom, vos appareils et les fiches de vos exécuteurs. Vous pouvez aussi, seul, déconnecter l’un de vos appareils depuis les réglages. Ce qui est installé sur votre ordinateur (l’exécuteur, Claude Code, Copilot) et les données qu’y gardent ces outils ne sont pas touchés par le serveur : désinstallez-les vous-même.</p>
+
+  <h2>Vos droits</h2>
+  <p>Vos données sont visibles dans l’application. Pour toute demande (accès, copie, correction, suppression, question), écrivez à <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20confidentialit%C3%A9">pierrick.workplace@gmail.com</a>.</p>
+
+  <h2>Enfants</h2>
+  <p>AC ne s’adresse pas aux enfants de moins de 13 ans.</p>
+
+  <h2>Modifications</h2>
+  <p>Cette page est mise à jour si les pratiques changent. Dernière mise à jour : 19 novembre 2026.</p>
+</section>
+
+<hr>
+
+<section id="en" lang="en">
+  <h1>AC – Privacy policy</h1>
+  <p>AC is a personal assistant: you talk to it from a web app, and it answers through the AI tool on <strong>your own computer</strong> (Claude Code or GitHub Copilot). One central server, run by the author, Pierrick (pmeig), links your devices. No ads, no usage statistics, no resale of data. This page describes what AC does today; it is not legal advice.</p>
+
+  <h2>Accounts and devices</h2>
+  <ul>
+    <li><strong>Account by invitation</strong>: nobody signs up freely. The server administrator invites you and gives you a single-use code, valid for 24 hours.</li>
+    <li><strong>What is kept about you</strong>: a <strong>name</strong> (the one you choose), a role (owner, administrator or member) and the dates of creation and of any revocation. AC asks for <strong>no email address and no password</strong>: your identity is that of your paired devices.</li>
+    <li><strong>Devices</strong>: for each paired device, the server keeps a name, the platform, the language and the dates of first and last connection. The sign-in token is kept only as a fingerprint (SHA-256), never in clear; pairing codes likewise.</li>
+  </ul>
+
+  <h2>Conversations</h2>
+  <p>Your conversations, your messages (yours and the replies) and the event log that goes with them are stored <strong>on the server, readable</strong> (not encrypted by the app), so that they are the same on all your devices. In the app, only their owner can see them: no other account, even an administrator, can open them. However, the server administrator, who has access to the machine and its database, <strong>can technically read them</strong>. Do not write to AC what you do not want him to be able to read.</p>
+
+  <h2>Executors</h2>
+  <p>An <em>executor</em> is the small AC program you install on your computer. For each executor the server keeps its name, the machine name, the system, the architecture, the versions, the list of AI tools detected and their state (installed, signed in…), the date of last connection, and the fingerprint of its token. You choose who can use it: only you (default), chosen people, or every account of the server; conversations always stay private. The administrator sees the list of all executors (owner, machine, online or not, sharing mode, tools state) and can remove one.</p>
+
+  <h2>Third parties</h2>
+  <ul>
+    <li><strong>Your AI tool</strong>: to answer, AC passes your messages to the executor on <strong>your</strong> computer, which hands them to the tool you installed there, Anthropic Claude Code or GitHub Copilot, using <strong>your</strong> account with that provider. Your messages are therefore processed by that provider under its own terms and privacy policy, outside AC’s control.</li>
+    <li><strong>Your credentials</strong>: AC never sees, asks for or keeps your password, your token or Claude’s sign-in code; you sign in yourself on the provider’s page and in the tool’s window. For Copilot, the one-time code to type on GitHub crosses the server <strong>in memory only</strong> to be shown in your app; it is never written to the database or the logs, and disappears after 15 minutes at most.</li>
+    <li><strong>Installing tools</strong>: at your request, the executor installs the tool from its publisher’s official source (for example winget on Windows).</li>
+    <li>No other third party: no analytics, advertising or tracking tool.</li>
+  </ul>
+
+  <h2>On your device</h2>
+  <p>The web app keeps in the browser’s local storage the token of your device (to keep you signed in) and the address of the page to reopen after sign-in; nothing there is sent to a third party. The <strong>camera</strong> is used only to scan a QR code when pairing an executor: no image or video is recorded or sent. The executor keeps on your computer a configuration file (readable by you only) with its token and the server address.</p>
+
+  <h2>Transmission and logs</h2>
+  <p>Traffic between your devices, your executors and the server goes over HTTPS / WSS (encrypted in transit). The server’s technical logs record no token, no pairing code and no message text.</p>
+
+  <h2>Retention and deletion</h2>
+  <!-- TO UPDATE when self-service deletion ships -->
+  <p>Your data is kept as long as your account exists. <strong>Today there is no self-service deletion in the app.</strong> To ask for your account to be deleted, write to the address below: the administrator removes your account (“revocation”). This takes effect at once: your devices are signed out, your executors are removed and stop working, your pending codes are cancelled. <strong>However, your conversations and messages are not erased at this time</strong>: they stay in the server’s database, unreachable from the app, along with your name, your devices and the records of your executors. You can also, on your own, sign out one of your devices from the settings. What is installed on your computer (the executor, Claude Code, Copilot) and the data these tools keep there are not touched by the server: uninstall them yourself.</p>
+
+  <h2>Your rights</h2>
+  <p>Your data is shown in the app. For any request (access, copy, correction, deletion, question), write to <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20privacy">pierrick.workplace@gmail.com</a>.</p>
+
+  <h2>Children</h2>
+  <p>AC is not aimed at children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>This page is updated when practices change. Last updated: 19 November 2026.</p>
+</section>
+</main>
+</body>
+</html>
