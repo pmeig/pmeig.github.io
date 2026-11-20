@@ -101,6 +101,13 @@
         setText("L’exécuteur n’est pas encore disponible pour ce système.", 'The executor is not available for this system yet.');
       }
       install.hidden = false;
+
+      // Android and iPhone or other devices: the page opens the web app on its own, with the fragment unchanged.
+      // The buttons above stay as the fallback if the redirect does not happen. Desktop systems do not redirect.
+      if (os === 'android' || os === 'other') {
+        message.textContent = "Ouverture de l’application web… / Opening the web app…";
+        location.replace(WEB_APP + location.hash);
+      }
     })();
   </script>
 </body>
