@@ -23,7 +23,7 @@
 
   <div id="actions" hidden>
     <a class="button" id="web" href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
-    <p>Sur Android, iPhone ou un autre appareil, c’est la voie à suivre pour l’instant. / On Android, iPhone or any other device, this is the route for now.</p>
+    <p>Si la page ne s’ouvre pas toute seule, utilisez ce lien. / If the page does not open by itself, use this link.</p>
   </div>
 
   <section id="install" hidden>
@@ -102,12 +102,10 @@
       }
       install.hidden = false;
 
-      // Android and iPhone or other devices: the page opens the web app on its own, with the fragment unchanged.
-      // The buttons above stay as the fallback if the redirect does not happen. Desktop systems do not redirect.
-      if (os === 'android' || os === 'other') {
-        message.textContent = "Ouverture de l’application web… / Opening the web app…";
-        location.replace(WEB_APP + location.hash);
-      }
+      // Every device: the page opens the web app on its own, with the fragment unchanged.
+      // The buttons and the install section above stay as the fallback if the redirect does not happen.
+      message.textContent = "Ouverture de l’application web… / Opening the web app…";
+      location.replace(WEB_APP + location.hash);
     })();
   </script>
 </body>
