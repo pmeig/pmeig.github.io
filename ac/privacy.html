@@ -35,7 +35,7 @@
 
   <h2>Limites</h2>
   <ul>
-    <li><strong>Exécuteur partagé</strong> : le propriétaire d’un exécuteur partagé avec vous peut lire ce qui lui est envoyé : votre message, la réponse, et au plus les 40 messages précédents de la conversation. L’application vous le signale chaque fois qu’un tel exécuteur répond. Les droits de lecture transmis à cet exécuteur sont supprimés de la base dès que la réponse est terminée, échouée ou annulée.</li>
+    <li><strong>Exécuteur partagé</strong> : le propriétaire d’un exécuteur partagé avec vous peut lire ce qui lui est envoyé : votre message, la réponse, et au plus les 40 messages précédents de la conversation. Les droits de lecture transmis à cet exécuteur sont supprimés de la base dès que la réponse est terminée, échouée ou annulée.</li>
     <li><strong>Administrateur</strong> : il gère les comptes. Il peut retirer vos appareils, en ajouter un à votre nom ou effacer vos conversations. Un appareil ajouté ne reçoit vos conversations que si vous l’acceptez vous-même sur l’un de vos appareils.</li>
     <li><strong>Code de comparaison</strong> : pour accepter un nouvel appareil, le code de 12 caractères affiché sur les deux écrans est comparé à l’œil. Sur l’appareil qui approuve, un scan du QR peut remplacer cette comparaison. Le QR porte la même information : il ne cache rien au serveur, qui voit ce code.</li>
     <li><strong>Serveur truqué et nouvel appareil</strong> : un serveur truqué pourrait faire démarrer un nouvel appareil avec des éléments de lecture qui lui appartiennent. Cela ne toucherait que les nouvelles conversations commencées ensuite avec cet appareil, jamais les anciennes.</li>
@@ -60,7 +60,7 @@
   <p>L’application web garde dans le stockage local du navigateur le jeton de votre appareil (pour rester connecté) et l’adresse de la page à rouvrir après la connexion ; rien n’y est envoyé à un tiers. La <strong>caméra</strong> n’est utilisée que pour scanner un code QR lors de l’association d’un exécuteur : aucune image ni vidéo n’est enregistrée ni envoyée. L’exécuteur garde sur votre ordinateur un fichier de configuration (accès réservé à vous) avec son jeton et l’adresse du serveur.</p>
 
   <h2>Transmission et journaux</h2>
-  <p>Les échanges entre vos appareils, vos exécuteurs et le serveur passent par HTTPS / WSS (avec chiffrement en transit). Les journaux techniques du serveur n’enregistrent ni jeton, ni code d’appairage, ni texte de message.</p>
+  <p>Les échanges entre vos appareils, vos exécuteurs et le serveur passent par HTTPS / WSS (avec chiffrement en transit).</p>
 
   <h2>Conservation et suppression</h2>
   <!-- DO NOT PUBLISH before self-service deletion ships -->
@@ -97,7 +97,7 @@
 
   <h2>Limits</h2>
   <ul>
-    <li><strong>Shared executor</strong>: the owner of an executor shared with you can read what is sent to it: your message, the reply, and at most the 40 previous messages of the conversation. The app tells you each time such an executor replies. Read rights granted to that executor are deleted from the database as soon as the reply ends, fails or is cancelled.</li>
+    <li><strong>Shared executor</strong>: the owner of an executor shared with you can read what is sent to it: your message, the reply, and at most the 40 previous messages of the conversation. Read rights granted to that executor are deleted from the database as soon as the reply ends, fails or is cancelled.</li>
     <li><strong>Administrator</strong>: they manage accounts. They can remove your devices, add a device in your name, or delete your conversations. An added device receives your conversations only if you accept it yourself on one of your devices.</li>
     <li><strong>Comparison code</strong>: to accept a new device, the 12-character code shown on both screens is compared by eye. On the approving device, a QR scan can replace that comparison. The QR carries the same information: it hides nothing from the server, which sees this code too.</li>
     <li><strong>Rigged server and new device</strong>: a rigged server could start a new device with read material that belongs to it. This would affect only the new conversations started afterwards with that device, never the older ones.</li>
@@ -122,7 +122,7 @@
   <p>The web app keeps in the browser’s local storage the token of your device (to keep you signed in) and the address of the page to reopen after sign-in; nothing there is sent to a third party. The <strong>camera</strong> is used only to scan a QR code when pairing an executor: no image or video is recorded or sent. The executor keeps on your computer a configuration file (readable by you only) with its token and the server address.</p>
 
   <h2>Transmission and logs</h2>
-  <p>Traffic between your devices, your executors and the server goes over HTTPS / WSS (secured in transit). The server’s technical logs record no token, no pairing code and no message text.</p>
+  <p>Traffic between your devices, your executors and the server goes over HTTPS / WSS (secured in transit). </p>
 
   <h2>Retention and deletion</h2>
   <!-- DO NOT PUBLISH before self-service deletion ships -->
