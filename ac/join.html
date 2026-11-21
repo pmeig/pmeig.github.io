@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>AC – Invitation</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 30rem; margin: 0 auto; padding: 2rem 1.25rem; text-align: center; }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.1rem; margin-top: 2.2rem; }
+    a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
+    ol { text-align: left; padding-left: 1.4rem; }
+    #install { border-top: 1px solid currentColor; margin-top: 2.5rem; opacity: 0.95; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Invitation AC / AC invitation</h1>
+  <p id="message">Ouverture de l’invitation… / Opening the invitation…</p>
+
+  <div id="actions" hidden>
+    <a class="button" id="web" href="#" rel="noopener">Accepter l’invitation / Accept the invitation</a>
+    <p>Si la page ne s’ouvre pas toute seule, utilisez ce bouton. Une invitation est valable 15 minutes. / If the page does not open by itself, use this button. An invitation is valid for 15 minutes.</p>
+  </div>
+
+  <section id="install" hidden>
+    <h2>Vous n’avez pas encore AC ? / You do not have AC yet?</h2>
+    <p>AC est une application web (PWA) : vous l’ajoutez à votre appareil depuis le navigateur, sans passer par un magasin. / AC is a web app (PWA): you add it to your device from the browser, without a store.</p>
+    <div id="steps"></div>
+    <p>Google Play : bientôt disponible. Microsoft Store : bientôt disponible. / Google Play: coming soon. Microsoft Store: coming soon.</p>
+  </section>
+
+  <noscript><p>JavaScript est nécessaire pour ouvrir cette invitation. / JavaScript is required to open this invitation.</p></noscript>
+
+  <script>
+    (function () {
+      // Invitation link: https://pmeig.github.io/ac/join#code=<code>
+      // The code stays in the fragment: it is read from location.hash only and is never put in a query string or sent in a request.
+      var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/invitations/accept';
+
+      // One instruction set per device. Order matters: iPadOS may announce itself as a Mac, Android also contains "Linux".
+      function deviceOf(ua, touchPoints) {
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'iphone';
+        if (/Android/i.test(ua)) return 'android';
+        if (/Macintosh|Mac OS X/i.test(ua) && touchPoints > 1) return 'iphone';
+        return 'desktop';
+      }
+
+      var STEPS = {
+        iphone: [
+          'Ouvrez cette page dans Safari. / Open this page in Safari.',
+          'Touchez le bouton Partager (le carré avec une flèche). / Tap the Share button (the square with an arrow).',
+          'Choisissez « Sur l’écran d’accueil », puis « Ajouter ». / Choose “Add to Home Screen”, then “Add”.'
+        ],
+        android: [
+          'Ouvrez cette page dans Chrome. / Open this page in Chrome.',
+          'Touchez le menu (les trois points en haut à droite). / Tap the menu (the three dots at the top right).',
+          'Choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application », puis confirmez. / Choose “Add to Home screen” or “Install app”, then confirm.'
+        ],
+        desktop: [
+          'Ouvrez cette page dans Chrome, Edge ou Safari. / Open this page in Chrome, Edge or Safari.',
+          'Chrome et Edge : cliquez sur l’icône d’installation à droite de la barre d’adresse, puis sur « Installer ». / Chrome and Edge: click the install icon at the right of the address bar, then “Install”.',
+          'Safari : menu Fichier, puis « Ajouter au Dock ». / Safari: File menu, then “Add to Dock”.'
+        ]
+      };
+
+      var message = document.getElementById('message');
+      var steps = document.getElementById('steps');
+      var install = document.getElementById('install');
+
+      var device = deviceOf(navigator.userAgent, navigator.maxTouchPoints || 0);
+      var list = document.createElement('ol');
+      STEPS[device].forEach(function (text) {
+        var li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+      });
+      steps.appendChild(list);
+      install.hidden = false;
+
+      var fragment = new URLSearchParams(location.hash.slice(1));
+      if (!fragment.get('code')) {
+        message.textContent = "Cette invitation est incomplète. Une invitation est valable 15 minutes : demandez-en une nouvelle à la personne qui vous l’a envoyée. / This invitation is incomplete. An invitation is valid for 15 minutes: ask the person who sent it for a new one.";
+        return;
+      }
+
+      document.getElementById('web').href = WEB_APP + location.hash;
+      document.getElementById('actions').hidden = false;
+
+      // Every device: the page opens the web app on its own, with the fragment unchanged.
+      // The button and the install section stay as the fallback if the redirect does not happen.
+      message.textContent = "Ouverture de l’application web… / Opening the web app…";
+      location.replace(WEB_APP + location.hash);
+    })();
+  </script>
+</body>
+</html>
