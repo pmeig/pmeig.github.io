@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC – Confidentialité / Privacy</title>
+  <meta name="robots" content="index, follow">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 46rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 1.6rem; }
+    nav a { margin-right: 1rem; display: inline-block; padding: 0.5rem 0; } hr { margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+<nav><a href="#fr">Français</a><a href="#en">English</a></nav>
+
+<main>
+<section id="fr" lang="fr">
+  <h1>AC – Politique de confidentialité</h1>
+  <p>AC est un assistant personnel : vous échangez avec lui depuis une application web, et il répond grâce à l’outil d’intelligence artificielle de <strong>votre propre ordinateur</strong> (Claude Code ou GitHub Copilot). Un seul serveur central, exploité par l’auteur, Pierrick (pmeig), relie vos appareils. Aucune publicité, aucune statistique d’usage, aucune revente de données. Cette page décrit ce que fait AC aujourd’hui ; ce n’est pas un conseil juridique.</p>
+
+  <h2>Comptes et appareils</h2>
+  <ul>
+    <li><strong>Compte sur invitation</strong> : on ne s’inscrit pas librement. L’administrateur du serveur vous invite et vous remet un code à usage unique, valable 24 heures.</li>
+    <li><strong>Ce qui est conservé sur vous</strong> : un <strong>nom</strong> (celui que vous choisissez), un rôle (propriétaire, administrateur ou membre) et les dates de création et d’éventuelle révocation. AC ne demande <strong>ni adresse e-mail, ni mot de passe</strong> : votre identité est celle de vos appareils appairés.</li>
+    <li><strong>Appareils</strong> : pour chaque appareil appairé, le serveur garde un nom, la plateforme, la langue et les dates de première et de dernière connexion. Le jeton de connexion n’est conservé que sous forme d’empreinte (SHA-256), jamais en clair ; les codes d’appairage aussi.</li>
+  </ul>
+
+  <h2>Conversations</h2>
+  <!-- DO NOT PUBLISH before encryption ships: exact sentence to align with team/encryption/contract.md -->
+  <p>Vos conversations, vos messages (les vôtres et les réponses) et le journal des événements qui les accompagne sont enregistrés <strong>chiffrés sur le serveur</strong>, pour qu’ils soient identiques sur tous vos appareils. Ce qui permet de les lire n’existe que sur <strong>vos appareils et vos exécuteurs</strong> : le serveur ne l’a pas, et l’administrateur ne peut <strong>pas lire vos conversations</strong>. Dans l’application, seul leur propriétaire peut les voir : un autre compte, même administrateur, n’y a pas accès.</p>
+  <!-- DO NOT PUBLISH before encryption ships: exact sentence to align with team/encryption/contract.md (to align) -->
+  <p>Le serveur sait toutefois qui échange avec lui et quand, la taille et le nombre des messages, les noms de vos personnes, appareils et exécuteurs, et l’état des réponses.</p>
+
+  <h2>Limites</h2>
+  <ul>
+    <li><strong>Exécuteur partagé</strong> : le propriétaire d’un exécuteur partagé avec vous peut lire ce qui lui est envoyé : votre message, la réponse, et au plus les 40 messages précédents de la conversation. Les droits de lecture transmis à cet exécuteur sont supprimés de la base dès que la réponse est terminée, échouée ou annulée.</li>
+    <li><strong>Administrateur</strong> : il gère les comptes. Il peut retirer vos appareils, en ajouter un à votre nom ou effacer vos conversations. Un appareil ajouté ne reçoit vos conversations que si vous l’acceptez vous-même sur l’un de vos appareils.</li>
+    <li><strong>Code de comparaison</strong> : pour accepter un nouvel appareil, le code de 12 caractères affiché sur les deux écrans est comparé à l’œil. Sur l’appareil qui approuve, un scan du QR peut remplacer cette comparaison. Le QR porte la même information : il ne cache rien au serveur, qui voit ce code.</li>
+    <li><strong>Serveur truqué et nouvel appareil</strong> : un serveur truqué pourrait faire démarrer un nouvel appareil avec des éléments de lecture qui lui appartiennent. Cela ne toucherait que les nouvelles conversations commencées ensuite avec cet appareil, jamais les anciennes.</li>
+    <li><strong>Page rechargée</strong> : quand les éléments de lecture sont renouvelés (après le retrait d’un appareil ou d’un exécuteur), un appareil déjà ouvert n’accepte le nouveau que s’il est annoncé par celui qu’il détient. Un appareil dont la page est rechargée repart de zéro et accepte ce que le serveur lui donne, sans cette vérification : un serveur truqué pourrait alors lui faire adopter des éléments qui lui appartiennent, et lire ce que cet appareil écrit ensuite. Cette limite n’est pas encore corrigée ; elle ne concerne que les conversations écrites après la substitution.</li>
+    <li><strong>Appareil resté éteint</strong> : un appareil ou un exécuteur resté éteint pendant que les éléments de lecture sont renouvelés deux fois ne peut plus lire les conversations récentes ; il faut le retirer puis l’ajouter de nouveau. L’application ne l’indique pas encore.</li>
+    <li><strong>Perte de tous les appareils</strong> : si vous perdez tous vos appareils et tous vos exécuteurs, personne ne peut récupérer vos conversations.</li>
+    <li><strong>Confiance dans l’application</strong> : l’application web est servie par le serveur. Un administrateur pourrait servir une version modifiée qui enverrait vos textes avant tout chiffrement. Aucune vérification automatique ne peut l’exclure : vous devez faire confiance à la personne qui gère le serveur pour servir l’application d’origine.</li>
+  </ul>
+
+  <h2>Exécuteurs</h2>
+  <p>Un <em>exécuteur</em> est le petit programme AC que vous installez sur votre ordinateur. Le serveur garde, pour chaque exécuteur : son nom, le nom de la machine, le système, l’architecture, les versions, la liste des outils d’IA détectés et leur état (installé, connecté…), la date de dernière connexion, et l’empreinte de son jeton. Vous choisissez qui peut l’utiliser : vous seul (par défaut), des personnes choisies, ou tous les comptes du serveur ; les conversations restent privées, sauf pour un exécuteur partagé (voir Limites). L’administrateur voit la liste de tous les exécuteurs (propriétaire, machine, en ligne ou non, mode de partage, état des outils) et peut en retirer un.</p>
+
+  <h2>Services tiers</h2>
+  <ul>
+    <li><strong>Votre outil d’IA</strong> : pour répondre, AC transmet vos messages à l’exécuteur de <strong>votre</strong> ordinateur, qui les confie à l’outil que vous y avez installé, Anthropic Claude Code ou GitHub Copilot, avec <strong>votre</strong> compte chez ce fournisseur. Vos messages sont donc traités par ce fournisseur selon ses propres conditions et sa propre politique de confidentialité, hors du contrôle d’AC.</li>
+    <li><strong>Vos identifiants</strong> : AC ne voit, ne demande et ne conserve jamais votre mot de passe, votre jeton ni le code de connexion de Claude ; vous vous connectez vous-même sur la page du fournisseur et dans la fenêtre de l’outil. Pour Copilot, le code à usage unique à saisir sur GitHub <strong>transite en clair par le serveur</strong> pour s’afficher dans votre application : il n’y a aucun chiffrement, et le serveur peut le lire.</li>
+    <li><strong>Installation des outils</strong> : à votre demande, l’exécuteur installe l’outil depuis la source officielle de son éditeur.</li>
+    <li>Aucun autre service tiers : pas d’outil de statistiques, de publicité ou de suivi.</li>
+  </ul>
+
+  <h2>Sur votre appareil</h2>
+  <p>L’application web garde dans le stockage local du navigateur le jeton de votre appareil (pour rester connecté) et l’adresse de la page à rouvrir après la connexion ; rien n’y est envoyé à un tiers. La <strong>caméra</strong> n’est utilisée que pour scanner un code QR lors de l’association d’un exécuteur : aucune image ni vidéo n’est enregistrée ni envoyée. L’exécuteur garde sur votre ordinateur un fichier de configuration (accès réservé à vous) avec son jeton et l’adresse du serveur.</p>
+
+  <h2>Transmission et journaux</h2>
+  <p>Les échanges entre vos appareils, vos exécuteurs et le serveur passent par HTTPS / WSS (avec chiffrement en transit).</p>
+
+  <h2>Conservation et suppression</h2>
+  <!-- DO NOT PUBLISH before self-service deletion ships -->
+  <p>Vos données sont conservées tant que votre compte existe. <strong>Chaque personne supprime elle-même son compte dans l’application</strong> : tout est alors effacé en une fois (vos conversations et messages, votre nom, vos appareils et les fiches de vos exécuteurs), et vos appareils et exécuteurs sont déconnectés. Vous pouvez aussi déconnecter l’un de vos appareils depuis les réglages. Les lignes effacées sont <strong>supprimées de la base</strong> ; cela ne garantit pas que les anciens octets disparaissent du disque (espace libre, sauvegardes). Ce qui est installé sur votre ordinateur (l’exécuteur, Claude Code, Copilot) et les données qu’y gardent ces outils ne sont pas touchés par le serveur : désinstallez-les vous-même.</p>
+
+  <h2>Vos droits</h2>
+  <p>Vos données sont visibles dans l’application. Pour toute demande (accès, copie, correction, suppression, question), écrivez à <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20confidentialit%C3%A9">pierrick.workplace@gmail.com</a>.</p>
+
+  <h2>Enfants</h2>
+  <p>AC ne s’adresse pas aux enfants de moins de 16 ans.</p>
+
+  <h2>Modifications</h2>
+  <p>Cette page est mise à jour si les pratiques changent. Dernière mise à jour : 20 novembre 2026.</p>
+</section>
+
+<hr>
+
+<section id="en" lang="en">
+  <h1>AC – Privacy policy</h1>
+  <p>AC is a personal assistant: you talk to it from a web app, and it answers through the AI tool on <strong>your own computer</strong> (Claude Code or GitHub Copilot). One central server, run by the author, Pierrick (pmeig), links your devices. No ads, no usage statistics, no resale of data. This page describes what AC does today; it is not legal advice.</p>
+
+  <h2>Accounts and devices</h2>
+  <ul>
+    <li><strong>Account by invitation</strong>: nobody signs up freely. The server administrator invites you and gives you a single-use code, valid for 24 hours.</li>
+    <li><strong>What is kept about you</strong>: a <strong>name</strong> (the one you choose), a role (owner, administrator or member) and the dates of creation and of any revocation. AC asks for <strong>no email address and no password</strong>: your identity is that of your paired devices.</li>
+    <li><strong>Devices</strong>: for each paired device, the server keeps a name, the platform, the language and the dates of first and last connection. The sign-in token is kept only as a fingerprint (SHA-256), never in clear; pairing codes likewise.</li>
+  </ul>
+
+  <h2>Conversations</h2>
+  <!-- DO NOT PUBLISH before encryption ships: exact sentence to align with team/encryption/contract.md -->
+  <p>Your conversations, your messages (yours and the replies) and the event log that goes with them are stored <strong>in a form the server cannot read</strong>, so that they are the same on all your devices. What lets them be read exists only on <strong>your devices and your executors</strong>: the server does not have it, and the administrator <strong>cannot read your conversations</strong>. In the app, only their owner can see them: no other account, even an administrator, can open them.</p>
+  <!-- DO NOT PUBLISH before encryption ships: exact sentence to align with team/encryption/contract.md (to align) -->
+  <p>The server does, however, know who talks to it and when, the size and number of messages, the names of your people, devices and executors, and the state of the replies.</p>
+
+  <h2>Limits</h2>
+  <ul>
+    <li><strong>Shared executor</strong>: the owner of an executor shared with you can read what is sent to it: your message, the reply, and at most the 40 previous messages of the conversation. Read rights granted to that executor are deleted from the database as soon as the reply ends, fails or is cancelled.</li>
+    <li><strong>Administrator</strong>: they manage accounts. They can remove your devices, add a device in your name, or delete your conversations. An added device receives your conversations only if you accept it yourself on one of your devices.</li>
+    <li><strong>Comparison code</strong>: to accept a new device, the 12-character code shown on both screens is compared by eye. On the approving device, a QR scan can replace that comparison. The QR carries the same information: it hides nothing from the server, which sees this code too.</li>
+    <li><strong>Rigged server and new device</strong>: a rigged server could start a new device with read material that belongs to it. This would affect only the new conversations started afterwards with that device, never the older ones.</li>
+    <li><strong>Reloaded page</strong>: when the read material is renewed (after a device or executor is removed), a device already open accepts the new one only if it is announced by the one it holds. A device whose page is reloaded starts from zero and accepts what the server gives it, without this check: a rigged server could then make it adopt material that belongs to it, and read what that device writes next. This limit is not yet fixed; it only affects conversations written after the substitution.</li>
+    <li><strong>Device left off</strong>: a device or executor left off while the read material is renewed twice can no longer read recent conversations; it must be removed and added again. The app does not show this yet.</li>
+    <li><strong>Losing every device</strong>: if you lose all your devices and all your executors, nobody can recover your conversations.</li>
+    <li><strong>Trust in the app</strong>: the web app is served by the server. An administrator could serve a modified version that would send your texts before any protection applies. No automatic check can rule this out: you must trust the person who runs the server to serve the original app.</li>
+  </ul>
+
+  <h2>Executors</h2>
+  <p>An <em>executor</em> is the small AC program you install on your computer. For each executor the server keeps its name, the machine name, the system, the architecture, the versions, the list of AI tools detected and their state (installed, signed in…), the date of last connection, and the fingerprint of its token. You choose who can use it: only you (default), chosen people, or every account of the server; conversations stay private, except for a shared executor (see Limits). The administrator sees the list of all executors (owner, machine, online or not, sharing mode, tools state) and can remove one.</p>
+
+  <h2>Third parties</h2>
+  <ul>
+    <li><strong>Your AI tool</strong>: to answer, AC passes your messages to the executor on <strong>your</strong> computer, which hands them to the tool you installed there, Anthropic Claude Code or GitHub Copilot, using <strong>your</strong> account with that provider. Your messages are therefore processed by that provider under its own terms and privacy policy, outside AC’s control.</li>
+    <li><strong>Your credentials</strong>: AC never sees, asks for or keeps your password, your token or Claude’s sign-in code; you sign in yourself on the provider’s page and in the tool’s window. For Copilot, the one-time code to type on GitHub <strong>travels in clear through the server</strong> to be shown in your app: it is sent unprotected, and the server can read it.</li>
+    <li><strong>Installing tools</strong>: at your request, the executor installs the tool from its publisher’s official source.</li>
+    <li>No other third party: no analytics, advertising or tracking tool.</li>
+  </ul>
+
+  <h2>On your device</h2>
+  <p>The web app keeps in the browser’s local storage the token of your device (to keep you signed in) and the address of the page to reopen after sign-in; nothing there is sent to a third party. The <strong>camera</strong> is used only to scan a QR code when pairing an executor: no image or video is recorded or sent. The executor keeps on your computer a configuration file (readable by you only) with its token and the server address.</p>
+
+  <h2>Transmission and logs</h2>
+  <p>Traffic between your devices, your executors and the server goes over HTTPS / WSS (secured in transit). </p>
+
+  <h2>Retention and deletion</h2>
+  <!-- DO NOT PUBLISH before self-service deletion ships -->
+  <p>Your data is kept as long as your account exists. <strong>Each person deletes his own account in the app</strong>: everything is then erased at once (your conversations and messages, your name, your devices and the records of your executors), and your devices and executors are signed out. You can also sign out one of your devices from the settings. Erased rows are <strong>deleted from the database</strong>; this does not guarantee that old bytes disappear from the disk (free space, backups). What is installed on your computer (the executor, Claude Code, Copilot) and the data these tools keep there are not touched by the server: uninstall them yourself.</p>
+
+  <h2>Your rights</h2>
+  <p>Your data is shown in the app. For any request (access, copy, correction, deletion, question), write to <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20privacy">pierrick.workplace@gmail.com</a>.</p>
+
+  <h2>Children</h2>
+  <p>AC is not aimed at children under 16.</p>
+
+  <h2>Changes</h2>
+  <p>This page is updated when practices change. Last updated: 20 November 2026.</p>
+</section>
+</main>
+</body>
+</html>

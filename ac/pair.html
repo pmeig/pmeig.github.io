@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>AC – Relier l’exécuteur</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 30rem; margin: 0 auto; padding: 2rem 1.25rem; text-align: center; }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.1rem; margin-top: 2.2rem; }
+    a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
+    a.link { display: block; margin: 0.5rem 0; }
+    #install { border-top: 1px solid currentColor; margin-top: 2.5rem; opacity: 0.95; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Relier l’exécuteur / Link the executor</h1>
+  <p id="message">Choisissez comment continuer. / Choose how to continue.</p>
+
+  <div id="actions" hidden>
+    <a class="button" id="web" href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
+    <p>Si la page ne s’ouvre pas toute seule, utilisez ce lien. / If the page does not open by itself, use this link.</p>
+  </div>
+
+  <section id="install" hidden>
+    <h2>Installer l’exécuteur / Install the executor</h2>
+    <p id="install-text"></p>
+    <div id="install-links"></div>
+  </section>
+
+  <noscript><p>JavaScript est nécessaire pour ouvrir cette page. / JavaScript is required to open this page.</p></noscript>
+
+  <script>
+    (function () {
+      // Download files of the executor program. THESE FILES DO NOT EXIST YET: change the names or the base when they are published.
+      var DOWNLOADS = {
+        base: 'https://pmeig-ac.duckdns.org:18443/telecharger/',
+        macos: 'ac-executor-macos',
+        deb: 'ac-executor-linux.deb',
+        rpm: 'ac-executor-linux.rpm'
+      };
+
+      // Web app (PWA). The fragment (#code=…&k=…) is appended as it is, never sent to a server.
+      var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/executors/pair';
+
+      // Operating system from the user agent. Order matters: Android and iOS also contain "Linux" or "Mac OS X".
+      function osOf(ua, touchPoints) {
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'other';
+        if (/Android/i.test(ua)) return 'android';
+        if (/Macintosh|Mac OS X/i.test(ua)) return touchPoints > 1 ? 'other' : 'macos';
+        if (/Windows/i.test(ua)) return 'windows';
+        if (/Linux|X11/i.test(ua)) return 'linux';
+        return 'other';
+      }
+
+      var message = document.getElementById('message');
+      var actions = document.getElementById('actions');
+      var install = document.getElementById('install');
+      var installText = document.getElementById('install-text');
+      var installLinks = document.getElementById('install-links');
+
+      // The fragment holds the pairing code: it is read from location.hash only.
+      var fragment = new URLSearchParams(location.hash.slice(1));
+      if (!fragment.get('code') || !fragment.get('k')) {
+        message.textContent = "Ce lien est incomplet. / This link is incomplete.";
+        return;
+      }
+
+      document.getElementById('web').href = WEB_APP + location.hash;
+      actions.hidden = false;
+
+      function addLink(label, file) {
+        var a = document.createElement('a');
+        a.className = 'link';
+        a.href = DOWNLOADS.base + file;
+        a.rel = 'noopener';
+        a.textContent = label;
+        installLinks.appendChild(a);
+      }
+
+      function setText(fr, en) {
+        installText.textContent = fr + ' / ' + en;
+      }
+
+      var os = osOf(navigator.userAgent, navigator.maxTouchPoints || 0);
+      if (os === 'macos') {
+        setText('Téléchargez le programme de l’exécuteur pour macOS.', 'Download the executor program for macOS.');
+        addLink('Télécharger pour macOS / Download for macOS', DOWNLOADS.macos);
+      } else if (os === 'linux') {
+        setText('Choisissez le paquet de votre système.', 'Choose the package for your system.');
+        addLink('.deb : Debian, Ubuntu / Debian, Ubuntu', DOWNLOADS.deb);
+        addLink('.rpm : Fedora et dérivés / Fedora and derivatives', DOWNLOADS.rpm);
+      } else if (os === 'windows') {
+        setText('Bientôt disponible sur le Microsoft Store.', 'Coming soon to the Microsoft Store.');
+        installText.textContent += ' L’application web reste disponible dans le navigateur. / The web app stays available in the browser.';
+      } else {
+        setText("L’exécuteur n’est pas encore disponible pour ce système.", 'The executor is not available for this system yet.');
+      }
+      install.hidden = false;
+
+      // Every device: the page opens the web app on its own, with the fragment unchanged.
+      // The buttons and the install section above stay as the fallback if the redirect does not happen.
+      message.textContent = "Ouverture de l’application web… / Opening the web app…";
+      location.replace(WEB_APP + location.hash);
+    })();
+  </script>
+</body>
+</html>
