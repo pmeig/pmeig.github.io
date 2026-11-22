@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC – Supprimer mon compte / Delete my account</title>
+  <meta name="robots" content="index, follow">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 46rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 1.6rem; }
+    nav a { margin-right: 1rem; display: inline-block; padding: 0.5rem 0; } hr { margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+<nav><a href="#fr">Français</a><a href="#en">English</a><a href="../privacy/">Confidentialité / Privacy</a></nav>
+
+<main>
+<section id="fr" lang="fr">
+  <h1>Supprimer mon compte AC</h1>
+
+  <h2>Depuis l’application (Android et web)</h2>
+  <p>Ouvrez <strong>Réglages</strong>, puis <strong>Mon compte</strong>, puis touchez <strong>Supprimer mon compte</strong>. Vous lisez ce qui sera supprimé, vous écrivez votre nom pour confirmer, et tout est <strong>supprimé de la base</strong>, tout de suite et sans retour possible. Cela nécessite une connexion au serveur. Vos appareils et vos exécuteurs sont déconnectés. Vous pouvez aussi supprimer une seule conversation depuis la liste.</p>
+
+  <h2>Si vous n’avez plus accès à votre compte</h2>
+  <p>Écrivez à <a href="mailto:pierrick.workplace@gmail.com?subject=Suppression%20de%20mon%20compte%20AC">pierrick.workplace@gmail.com</a> avec pour objet&nbsp;«&nbsp;Suppression de mon compte AC&nbsp;», en indiquant le nom de votre compte (et l’adresse e-mail du compte, s’il en a une). L’administrateur du serveur peut aussi supprimer une personne&nbsp;: l’effacement est le même.</p>
+  <!-- À VÉRIFIER (propriétaire) : délai de traitement à annoncer pour la demande par e-mail (30 jours sur budget) ; moyen de vérifier l’identité d’une personne sans adresse e-mail. -->
+
+  <h2>Ce qui est supprimé de la base</h2>
+  <ul>
+    <li>Votre compte&nbsp;: nom, rôle et, s’il en a, adresse e-mail et empreinte du mot de passe.</li>
+    <li>Vos appareils et leurs jetons, vos codes d’appairage et d’invitation.</li>
+    <li>Vos conversations&nbsp;: messages, réponses, tours et événements.</li>
+    <li>Vos exécuteurs (fiches, codes, partages, ordres en attente) et vos invitations non utilisées. Les personnes que vous aviez invitées et qui ne sont jamais venues disparaissent avec elles.</li>
+  </ul>
+  <p>«&nbsp;Supprimé de la base&nbsp;» veut dire que les lignes sont effacées de la base de données du serveur&nbsp;; cela ne veut pas dire que les anciens octets sont effacés du disque.</p>
+
+  <h2>Ce qui reste</h2>
+  <ul>
+    <li>Les réponses que vos exécuteurs partagés ont écrites dans les conversations d’autres personnes, sans votre nom ni celui de vos machines.</li>
+    <li>Les comptes des personnes que vous avez invitées et qui sont venues&nbsp;: seul le lien&nbsp;«&nbsp;invité par&nbsp;» disparaît.</li>
+    <li>Les journaux du serveur&nbsp;: ils contiennent des identifiants aléatoires, la route demandée, le résultat et l’heure, jamais un nom, un texte de message, un nom de machine ni une adresse e-mail.</li>
+    <li>Les sauvegardes de la base et les copies de l’hébergeur, jusqu’à leur renouvellement, et les anciens octets dans l’espace libre de la base, jusqu’à ce qu’ils soient réécrits.</li>
+  </ul>
+  <!-- À VÉRIFIER (propriétaire) : durée de conservation des journaux et des sauvegardes (aucune durée fixée ; aucune sauvegarde n’existait sur la VM d’après store-data.md). -->
+
+  <h2>Ce qui n’est pas touché</h2>
+  <p>L’exécuteur AC et les outils d’IA installés sur votre ordinateur (Claude Code, GitHub Copilot) et les données qu’ils y gardent, ainsi que ce que vous avez copié ailleurs. Le serveur n’efface rien chez vous&nbsp;: désinstallez-les vous-même si vous le souhaitez. Désinstaller l’application ne supprime pas votre compte&nbsp;: la copie du serveur reste jusqu’à la suppression du compte.</p>
+
+  <h2>Cas du propriétaire du serveur</h2>
+  <p>Le propriétaire ne peut pas supprimer son compte tant qu’une autre personne existe sur le serveur.</p>
+
+  <p>Voir aussi la <a href="../privacy/">politique de confidentialité</a>.</p>
+</section>
+
+<hr>
+
+<section id="en" lang="en">
+  <h1>Delete my AC account</h1>
+
+  <h2>From the app (Android and web)</h2>
+  <p>Open <strong>Settings</strong>, then <strong>My account</strong>, then tap <strong>Delete my account</strong>. You read what will be deleted, type your name to confirm, and everything is <strong>deleted from the database</strong>, immediately and with no way back. It requires a connection to the server. Your devices and executors are signed out. You can also delete a single conversation from the list.</p>
+
+  <h2>If you can no longer access your account</h2>
+  <p>Write to <a href="mailto:pierrick.workplace@gmail.com?subject=Delete%20my%20AC%20account">pierrick.workplace@gmail.com</a> with the subject “Delete my AC account”, giving the name of your account (and its email address, if it has one). The server administrator can also delete a person: the erasure is the same.</p>
+
+  <h2>What is deleted from the database</h2>
+  <ul>
+    <li>Your account: name, role and, if it has one, email address and password fingerprint.</li>
+    <li>Your devices and their tokens, your pairing and invitation codes.</li>
+    <li>Your conversations: messages, replies, turns and events.</li>
+    <li>Your executors (records, codes, sharing, pending orders) and your unused invitations. People you invited who never came are deleted with them.</li>
+  </ul>
+  <p>“Deleted from the database” means the rows are erased from the server’s database; it does not mean the old bytes are wiped from the disk.</p>
+
+  <h2>What remains</h2>
+  <ul>
+    <li>The replies your shared executors wrote in other people’s conversations, without your name or your machines’ names.</li>
+    <li>The accounts of the people you invited who did come: only the “invited by” link disappears.</li>
+    <li>The server logs: they contain random identifiers, the requested route, the result and the time, never a name, message text, machine name or email address.</li>
+    <li>Database backups and the host’s copies, until they are renewed, and old bytes in the database’s free space, until they are overwritten.</li>
+  </ul>
+
+  <h2>What is not touched</h2>
+  <p>The AC executor and the AI tools installed on your computer (Claude Code, GitHub Copilot) and the data they keep there, as well as anything you copied elsewhere. The server erases nothing on your side: uninstall them yourself if you wish. Uninstalling the app does not delete your account: the server copy stays until the account is deleted.</p>
+
+  <h2>Server owner</h2>
+  <p>The owner cannot delete their account while another person exists on the server.</p>
+
+  <p>See also the <a href="../privacy/">privacy policy</a>.</p>
+</section>
+</main>
+</body>
+</html>

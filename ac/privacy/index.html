@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC – Confidentialité / Privacy</title>
+  <meta name="robots" content="index, follow">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.55 system-ui, sans-serif; max-width: 46rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 1.6rem; }
+    nav a { margin-right: 1rem; display: inline-block; padding: 0.5rem 0; } hr { margin: 2.5rem 0; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { border: 1px solid currentColor; padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+  </style>
+</head>
+<body>
+<nav><a href="#fr">Français</a><a href="#en">English</a><a href="../delete-account/">Supprimer mon compte / Delete my account</a></nav>
+
+<main>
+<section id="fr" lang="fr">
+  <h1>AC – Politique de confidentialité</h1>
+  <p>AC (application Android&nbsp;«&nbsp;Asimov AC&nbsp;» et application web) est un assistant personnel&nbsp;: vous lui écrivez ou lui parlez, et il répond grâce à l’outil d’intelligence artificielle de <strong>votre propre ordinateur</strong> (par exemple Claude Code ou GitHub Copilot). Un serveur central, exploité par l’auteur, Pierrick (pmeig), relie vos appareils. Aucune publicité, aucune statistique d’usage, aucune revente de données. Cette page décrit ce que fait AC aujourd’hui&nbsp;; ce n’est pas un conseil juridique.</p>
+
+  <h2>Ce que nous collectons, et pourquoi</h2>
+  <table>
+    <thead><tr><th>Donnée</th><th>Pourquoi</th></tr></thead>
+    <tbody>
+      <tr><td>Votre <strong>nom</strong> (1 à 60 caractères), votre rôle (propriétaire, administrateur ou membre), la date de création du compte</td><td>Vous identifier dans AC.</td></tr>
+      <tr><td>Votre <strong>adresse e-mail</strong> et une empreinte de votre mot de passe (jamais le mot de passe lui-même), <strong>seulement</strong> si vous créez un compte avec e-mail et mot de passe&nbsp;; un compte créé sur invitation n’en a pas. Votre adresse n’est jamais montrée aux autres personnes.</td><td>Vous connecter sur un nouvel appareil, vous envoyer les messages de confirmation, de mot de passe oublié et&nbsp;«&nbsp;Repartir de zéro&nbsp;».</td></tr>
+      <tr><td>Vos <strong>appareils</strong>&nbsp;: nom, plateforme, langue, dates de création et de dernière connexion, jeton de connexion (conservé uniquement sous forme d’empreinte)</td><td>Rester connecté, voir et retirer vos appareils.</td></tr>
+      <tr><td>Vos <strong>conversations</strong>&nbsp;: le texte de vos messages et des réponses, le nom de la conversation, l’univers choisi, les noms des agents&nbsp;; leurs dates, leur état et la taille des messages. <strong>Ces données sont stockées sur le serveur AC, jusqu’à leur suppression.</strong></td><td>Fonction principale de l’application&nbsp;: retrouver vos conversations, à l’identique, sur tous vos appareils.</td></tr>
+      <tr><td>Vos <strong>exécuteurs</strong> (le programme AC installé sur votre ordinateur)&nbsp;: nom, nom de la machine, système, versions, outils d’IA détectés et leur état, mode de partage, dernière connexion</td><td>Relier votre ordinateur au serveur.</td></tr>
+      <tr><td>Codes d’appairage et d’invitation, demandes d’inscription et de connexion, liens à usage unique (valables de 5 minutes à 24 heures, conservés sous forme d’empreinte)</td><td>Associer un appareil ou un exécuteur, inviter quelqu’un, vérifier votre adresse.</td></tr>
+      <tr><td>Journaux techniques du serveur&nbsp;: identifiants aléatoires, route demandée, résultat, heure&nbsp;; jamais de nom, de texte de message, de nom de machine ni d’adresse e-mail</td><td>Faire fonctionner et surveiller le serveur.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ce que nous ne collectons pas</h2>
+  <p>Votre position, vos contacts, vos photos et vidéos, votre identifiant publicitaire, des statistiques d’usage, des rapports de plantage envoyés à un tiers. Aucun outil de publicité ni de suivi. Nous ne recevons jamais le mot de passe, le jeton ni le code de connexion que vous utilisez chez le fournisseur de votre outil d’IA&nbsp;: vous vous y connectez vous-même.</p>
+
+  <h2>Les permissions de l’application Android</h2>
+  <ul>
+    <li><strong>Caméra</strong>&nbsp;: uniquement pour lire un code QR (ajouter un exécuteur, accepter un nouvel appareil)&nbsp;; rien n’est enregistré ni envoyé.</li>
+    <li><strong>Micro</strong>&nbsp;: uniquement si vous activez la voix dans les réglages (désactivée par défaut), pour dicter un message. Le son n’est jamais envoyé au serveur AC ni enregistré par AC&nbsp;: AC ne reçoit que le texte reconnu. La reconnaissance vocale est celle de votre téléphone&nbsp;; selon l’appareil, son service peut envoyer le son à son propre fournisseur, selon ses conditions, et AC vous le dit et demande votre accord avant.</li>
+    <li><strong>Notifications</strong>&nbsp;: uniquement si vous les activez (désactivées par défaut), pour vous prévenir qu’une réponse est prête, sans jamais montrer le texte d’un message.</li>
+    <li><strong>Internet et état du réseau</strong>&nbsp;: parler au serveur AC et garder un message en attente si le réseau manque.</li>
+  </ul>
+
+  <h2>Avec qui nous partageons vos données</h2>
+  <p>Nous ne vendons pas vos données et ne les partageons pas à des fins de publicité.</p>
+  <ul>
+    <li><strong>Le compte de messagerie qui envoie les e-mails d’AC</strong> (confirmation d’adresse, mot de passe oublié,&nbsp;«&nbsp;Repartir de zéro&nbsp;») reçoit votre adresse e-mail pour les acheminer.</li>
+    <li><strong>L’outil d’IA de votre ordinateur</strong> (par exemple Claude Code d’Anthropic ou GitHub Copilot) reçoit vos messages, sur votre machine et avec <strong>votre</strong> compte chez ce fournisseur, selon ses propres conditions et sa propre politique de confidentialité, hors du contrôle d’AC.</li>
+    <li><strong>Un exécuteur partagé par une autre personne</strong>&nbsp;: si vous choisissez de l’utiliser, le propriétaire de cette machine peut lire le message que vous envoyez, la réponse, et au plus les 40 messages précédents de la conversation. L’application vous le dit avant l’envoi. Les droits de lecture donnés pour cela sont supprimés de la base dès que la réponse est terminée, échouée ou annulée.</li>
+    <li>Pour Copilot, le code à usage unique à saisir sur GitHub passe par la mémoire du serveur (15 minutes au plus, jamais en base ni dans les journaux) pour s’afficher dans votre application.</li>
+  </ul>
+  <!-- À VÉRIFIER (lead / propriétaire) : la réponse « partage avec des tiers » du formulaire Play (securite-des-donnees.md, section 3) doit rester identique à cette liste. -->
+
+  <h2>Qui peut voir vos conversations</h2>
+  <p>Vos conversations sont enregistrées sur le serveur AC. Dans l’application, seule la personne qui les a écrites peut les ouvrir&nbsp;: un autre compte, même administrateur, n’y a pas accès par l’application. L’administrateur du serveur gère les comptes (retirer un appareil, supprimer une personne et ses données) et peut voir les informations de fonctionnement&nbsp;: noms des personnes, des appareils et des exécuteurs, dates, nombre et taille des messages, état des réponses. Le serveur étant exploité par l’auteur, c’est à lui que vous confiez la garde de ces données.</p>
+  <!-- À VÉRIFIER (propriétaire) : aucune affirmation sur l’illisibilité des conversations pour le serveur ou l’administrateur tant que la preuve automatique n’est pas verte sur le serveur public et que le propriétaire ne l’a pas validée (docs/privacy-encryption-draft.md). Les messages sont déclarés « collectés ». -->
+
+  <h2>Comment vos données sont protégées</h2>
+  <ul>
+    <li>Toutes les communications avec le serveur passent par une connexion sécurisée (HTTPS et WSS). L’application Android refuse le trafic en clair.</li>
+    <li>Votre mot de passe n’est jamais stocké&nbsp;: seule une empreinte salée l’est. Les jetons et les codes ne sont stockés que sous forme d’empreinte.</li>
+    <li>L’application Android ne se sauvegarde pas dans le nuage de Google ni ne se transfère d’un téléphone à l’autre.</li>
+    <li>Un nouvel appareil doit être accepté depuis un appareil déjà connecté.</li>
+  </ul>
+  <!-- À VÉRIFIER : « captures d’écran désactivées dans l’application » (confidentialite.md) non repris ici ; à confirmer dans le code Android avant de l’ajouter. -->
+
+  <h2>Sur votre appareil</h2>
+  <p>L’application web garde dans le stockage local du navigateur le jeton de votre appareil (pour rester connecté) et l’adresse de la page à rouvrir après la connexion&nbsp;; rien n’y est envoyé à un tiers. L’exécuteur garde sur votre ordinateur un fichier de configuration (accès réservé à vous) avec son jeton et l’adresse du serveur.</p>
+
+  <h2>Combien de temps nous gardons vos données</h2>
+  <p>Vos données restent tant que votre compte existe. Les demandes d’inscription, de connexion et les liens à usage unique sont supprimés après 5 minutes à 1 heure (nettoyage au plus tard au bout de 7 jours). Les journaux techniques du serveur sont gardés tant que l’hébergeur les garde. Des sauvegardes de la base peuvent exister.</p>
+  <!-- À VÉRIFIER (propriétaire) : durée de conservation des journaux et des sauvegardes de la base ; pays et hébergeur de la machine du serveur ; aucune sauvegarde n’existait encore sur la VM d’après store-data.md. -->
+
+  <h2>Supprimer votre compte et vos données</h2>
+  <p>Dans l’application (Android ou web)&nbsp;: <strong>Réglages,&nbsp;«&nbsp;Mon compte&nbsp;»,&nbsp;«&nbsp;Supprimer mon compte&nbsp;»</strong>. Tout est alors <strong>supprimé de la base</strong>, tout de suite et sans retour possible&nbsp;: votre compte, vos appareils, vos conversations, vos exécuteurs et vos invitations non utilisées. Les étapes complètes, ce qui reste et le contact en cas de perte d’accès sont sur la page <a href="../delete-account/">Supprimer mon compte</a>.</p>
+
+  <h2>Vos droits</h2>
+  <p>Vos données sont visibles dans l’application. Pour toute demande (accès, copie, correction, suppression, question), écrivez à <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20confidentialit%C3%A9">pierrick.workplace@gmail.com</a>.</p>
+  <!-- À VÉRIFIER (propriétaire) : base légale, droit de réclamation auprès de l’autorité de protection des données, transferts hors de l’Union. -->
+
+  <h2>Enfants</h2>
+  <p>AC ne s’adresse pas aux enfants de moins de 13 ans.</p>
+  <!-- À VÉRIFIER (propriétaire) : âge minimum et classement d’âge (13 ans dans confidentialite.md ; 16 ans dans l’ancienne page). -->
+
+  <h2>Modifications</h2>
+  <p>Cette page est mise à jour si les pratiques changent. Dernière mise à jour&nbsp;: 22 novembre 2026.</p>
+</section>
+
+<hr>
+
+<section id="en" lang="en">
+  <h1>AC – Privacy policy</h1>
+  <p>AC (the “Asimov AC” Android app and the web app) is a personal assistant: you write or speak to it, and it answers through the AI tool on <strong>your own computer</strong> (for example Claude Code or GitHub Copilot). One central server, run by the author, Pierrick (pmeig), links your devices. No ads, no usage statistics, no resale of data. This page describes what AC does today; it is not legal advice.</p>
+
+  <h2>What we collect, and why</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Your <strong>name</strong> (1 to 60 characters), your role (owner, administrator or member), the account creation date</td><td>To identify you in AC.</td></tr>
+      <tr><td>Your <strong>email address</strong> and a fingerprint of your password (never the password itself), <strong>only</strong> if you create an account with email and password; an account created by invitation has none. Your address is never shown to other people.</td><td>To sign you in on a new device and to send you the confirmation, forgotten-password and “Start over” messages.</td></tr>
+      <tr><td>Your <strong>devices</strong>: name, platform, language, creation and last-connection dates, sign-in token (kept only as a fingerprint)</td><td>To keep you signed in and to let you see and remove your devices.</td></tr>
+      <tr><td>Your <strong>conversations</strong>: the text of your messages and of the replies, the conversation name, the chosen universe, the agent names; their dates, state and message sizes. <strong>This data is stored on the AC server until it is deleted.</strong></td><td>Main function of the app: to find your conversations, identical, on all your devices.</td></tr>
+      <tr><td>Your <strong>executors</strong> (the AC program installed on your computer): name, machine name, system, versions, AI tools detected and their state, sharing mode, last connection</td><td>To link your computer to the server.</td></tr>
+      <tr><td>Pairing and invitation codes, sign-up and sign-in requests, single-use links (valid from 5 minutes to 24 hours, kept as fingerprints)</td><td>To pair a device or an executor, invite someone, verify your address.</td></tr>
+      <tr><td>Technical server logs: random identifiers, requested route, result, time; never a name, message text, machine name or email address</td><td>To run and monitor the server.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What we do not collect</h2>
+  <p>Your location, contacts, photos and videos, advertising identifier, usage statistics, crash reports sent to a third party. No advertising or tracking tool. We never receive the password, token or sign-in code you use with the provider of your AI tool: you sign in there yourself.</p>
+
+  <h2>Android app permissions</h2>
+  <ul>
+    <li><strong>Camera</strong>: only to scan a QR code (adding an executor, accepting a new device); nothing is recorded or sent.</li>
+    <li><strong>Microphone</strong>: only if you turn voice on in the settings (off by default), to dictate a message. Sound is never sent to the AC server nor recorded by AC: AC only receives the recognised text. Speech recognition is your phone’s; depending on the device, its service may send the sound to its own provider under its own terms, and AC tells you and asks for your consent first.</li>
+    <li><strong>Notifications</strong>: only if you turn them on (off by default), to tell you a reply is ready, never showing the text of a message.</li>
+    <li><strong>Internet and network state</strong>: to talk to the AC server and keep a message waiting when the network is down.</li>
+  </ul>
+
+  <h2>Who we share your data with</h2>
+  <p>We do not sell your data and do not share it for advertising.</p>
+  <ul>
+    <li><strong>The mail account that sends AC’s emails</strong> (address confirmation, forgotten password, “Start over”) receives your email address to deliver them.</li>
+    <li><strong>The AI tool on your computer</strong> (for example Anthropic’s Claude Code or GitHub Copilot) receives your messages, on your machine and with <strong>your</strong> account with that provider, under its own terms and privacy policy, outside AC’s control.</li>
+    <li><strong>An executor shared by another person</strong>: if you choose to use it, the owner of that machine can read the message you send, the reply, and at most the 40 previous messages of the conversation. The app tells you before you send. The read rights granted for this are deleted from the database as soon as the reply ends, fails or is cancelled.</li>
+    <li>For Copilot, the one-time code to type on GitHub goes through the server’s memory (15 minutes at most, never in the database or the logs) to be shown in your app.</li>
+  </ul>
+
+  <h2>Who can see your conversations</h2>
+  <p>Your conversations are stored on the AC server. In the app, only the person who wrote them can open them: no other account, even an administrator, can reach them through the app. The server administrator manages accounts (removing a device, deleting a person and their data) and can see operating information: names of people, devices and executors, dates, number and size of messages, state of replies. Since the server is run by the author, you entrust them with the custody of this data.</p>
+
+  <h2>How your data is protected</h2>
+  <ul>
+    <li>All communication with the server goes over a secure connection (HTTPS and WSS). The Android app refuses unprotected traffic.</li>
+    <li>Your password is never stored: only a salted fingerprint is. Tokens and codes are stored only as fingerprints.</li>
+    <li>The Android app is not backed up to Google’s cloud and does not transfer from one phone to another.</li>
+    <li>A new device must be accepted from a device that is already signed in.</li>
+  </ul>
+
+  <h2>On your device</h2>
+  <p>The web app keeps in the browser’s local storage the token of your device (to keep you signed in) and the address of the page to reopen after sign-in; nothing there is sent to a third party. The executor keeps on your computer a configuration file (readable by you only) with its token and the server address.</p>
+
+  <h2>How long we keep your data</h2>
+  <p>Your data is kept as long as your account exists. Sign-up and sign-in requests and single-use links are deleted after 5 minutes to 1 hour (cleaned up within 7 days at the latest). Technical server logs are kept as long as the host keeps them. Backups of the database may exist.</p>
+
+  <h2>Deleting your account and your data</h2>
+  <p>In the app (Android or web): <strong>Settings, “My account”, “Delete my account”</strong>. Everything is then <strong>deleted from the database</strong>, immediately and with no way back: your account, your devices, your conversations, your executors and your unused invitations. The full steps, what remains and the contact if you lost access are on the <a href="../delete-account/">Delete my account</a> page.</p>
+
+  <h2>Your rights</h2>
+  <p>Your data is shown in the app. For any request (access, copy, correction, deletion, question), write to <a href="mailto:pierrick.workplace@gmail.com?subject=AC%20-%20privacy">pierrick.workplace@gmail.com</a>.</p>
+
+  <h2>Children</h2>
+  <p>AC is not aimed at children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>This page is updated when practices change. Last updated: 22 November 2026.</p>
+</section>
+</main>
+</body>
+</html>
