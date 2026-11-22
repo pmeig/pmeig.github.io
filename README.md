@@ -10,8 +10,8 @@ reachable on port 18443 (shared IPv4 of the box), and Android only verifies App 
 | `/.well-known/assetlinks.json` | Android App Links verification: the link opens the app directly when it is installed (SHA-256 of the app signing certificate) |
 | `/budget/privacy.html` | Privacy policy (source of truth; it was removed from `web/public/` of pmeig/budget) |
 | `/budget/delete-account.html` | Account deletion page (source of truth; it was removed from `web/public/` of pmeig/budget) |
-| `/ac/privacy/` | Privacy policy of AC (French then English; source of truth) |
-| `/ac/delete-account/` | Account deletion page of AC (French then English; source of truth) |
+| `/ac/privacy.html` | Privacy policy of AC (French then English; source of truth) |
+| `/ac/delete-account.html` | Account deletion page of AC (French then English; source of truth) |
 
 No secret here: the invitation token is only in the link that is shared, like before.
 
