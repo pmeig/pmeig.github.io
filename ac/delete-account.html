@@ -24,13 +24,13 @@
 
   <h2>Si vous n’avez plus accès à votre compte</h2>
   <p>Écrivez à <a href="mailto:pierrick.workplace@gmail.com?subject=Suppression%20de%20mon%20compte%20AC">pierrick.workplace@gmail.com</a> avec pour objet&nbsp;«&nbsp;Suppression de mon compte AC&nbsp;», en indiquant le nom de votre compte (et l’adresse e-mail du compte, s’il en a une). L’administrateur du serveur peut aussi supprimer une personne&nbsp;: l’effacement est le même.</p>
-  <!-- À VÉRIFIER (propriétaire) : délai de traitement à annoncer pour la demande par e-mail (30 jours sur budget) ; moyen de vérifier l’identité d’une personne sans adresse e-mail. -->
 
   <h2>Ce qui est supprimé de la base</h2>
   <ul>
     <li>Votre compte&nbsp;: nom, rôle et, s’il en a, adresse e-mail et empreinte du mot de passe.</li>
     <li>Vos appareils et leurs jetons, vos codes d’appairage et d’invitation.</li>
-    <li>Vos conversations&nbsp;: messages, réponses, tours et événements.</li>
+    <li>Vos conversations&nbsp;: messages, réponses, tours et événements, avec les descriptions et miniatures de leurs pièces jointes et les pièces pas encore livrées.</li>
+    <li>Votre abonnement aux notifications du navigateur, vos projets et les avis de sessions d’IA en attente.</li>
     <li>Vos exécuteurs (fiches, codes, partages, ordres en attente) et vos invitations non utilisées. Les personnes que vous aviez invitées et qui ne sont jamais venues disparaissent avec elles.</li>
   </ul>
   <p>«&nbsp;Supprimé de la base&nbsp;» veut dire que les lignes sont effacées de la base de données du serveur&nbsp;; cela ne veut pas dire que les anciens octets sont effacés du disque.</p>
@@ -39,10 +39,9 @@
   <ul>
     <li>Les réponses que vos exécuteurs partagés ont écrites dans les conversations d’autres personnes, sans votre nom ni celui de vos machines.</li>
     <li>Les comptes des personnes que vous avez invitées et qui sont venues&nbsp;: seul le lien&nbsp;«&nbsp;invité par&nbsp;» disparaît.</li>
-    <li>Les journaux du serveur&nbsp;: ils contiennent des identifiants aléatoires, la route demandée, le résultat et l’heure, jamais un nom, un texte de message, un nom de machine ni une adresse e-mail.</li>
-    <li>Les sauvegardes de la base et les copies de l’hébergeur, jusqu’à leur renouvellement, et les anciens octets dans l’espace libre de la base, jusqu’à ce qu’ils soient réécrits.</li>
+    <li>Les journaux du serveur&nbsp;: ils contiennent des identifiants aléatoires, la route demandée, le résultat et l’heure, jamais un nom, un texte de message, un contenu de fichier, un nom de machine ni une adresse e-mail. Ils sont gardés 3 mois au plus (rotation quotidienne, 90 jours).</li>
+    <li>Aucune sauvegarde du contenu n’est faite. Les anciens octets dans l’espace libre de la base, jusqu’à ce qu’ils soient réécrits.</li>
   </ul>
-  <!-- À VÉRIFIER (propriétaire) : durée de conservation des journaux et des sauvegardes (aucune durée fixée ; aucune sauvegarde n’existait sur la VM d’après store-data.md). -->
 
   <h2>Ce qui n’est pas touché</h2>
   <p>L’exécuteur AC et les outils d’IA installés sur votre ordinateur (Claude Code, GitHub Copilot) et les données qu’ils y gardent, ainsi que ce que vous avez copié ailleurs. Le serveur n’efface rien chez vous&nbsp;: désinstallez-les vous-même si vous le souhaitez. Désinstaller l’application ne supprime pas votre compte&nbsp;: la copie du serveur reste jusqu’à la suppression du compte.</p>
@@ -68,7 +67,8 @@
   <ul>
     <li>Your account: name, role and, if it has one, email address and password fingerprint.</li>
     <li>Your devices and their tokens, your pairing and invitation codes.</li>
-    <li>Your conversations: messages, replies, turns and events.</li>
+    <li>Your conversations: messages, replies, turns and events, with the descriptions and thumbnails of their attachments and the attachments not yet delivered.</li>
+    <li>Your browser notification subscription, your projects and the notices of pending AI sessions.</li>
     <li>Your executors (records, codes, sharing, pending orders) and your unused invitations. People you invited who never came are deleted with them.</li>
   </ul>
   <p>“Deleted from the database” means the rows are erased from the server’s database; it does not mean the old bytes are wiped from the disk.</p>
@@ -77,8 +77,8 @@
   <ul>
     <li>The replies your shared executors wrote in other people’s conversations, without your name or your machines’ names.</li>
     <li>The accounts of the people you invited who did come: only the “invited by” link disappears.</li>
-    <li>The server logs: they contain random identifiers, the requested route, the result and the time, never a name, message text, machine name or email address.</li>
-    <li>Database backups and the host’s copies, until they are renewed, and old bytes in the database’s free space, until they are overwritten.</li>
+    <li>The server logs: they contain random identifiers, the requested route, the result and the time, never a name, message text, file content, machine name or email address. They are kept 3 months at most (daily rotation, 90 days).</li>
+    <li>No backup of the content is made. Old bytes in the database’s free space, until they are overwritten.</li>
   </ul>
 
   <h2>What is not touched</h2>
