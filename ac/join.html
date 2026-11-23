@@ -12,6 +12,10 @@
     h1 { font-size: 1.4rem; }
     h2 { font-size: 1.1rem; margin-top: 2.2rem; }
     a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
+    a.button { min-height: 3rem; box-sizing: border-box; }
+    a.button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+    #install p a { display: inline-block; margin: 0 0.4rem; padding: 0.7rem 0.4rem; }
+    #install p a:focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
     ol { text-align: left; padding-left: 1.4rem; }
     #install { border-top: 1px solid currentColor; margin-top: 2.5rem; opacity: 0.95; }
     [hidden] { display: none; }
@@ -28,9 +32,11 @@
 
   <section id="install" hidden>
     <h2>Vous n’avez pas encore AC ? / You do not have AC yet?</h2>
-    <p>AC est une application web (PWA) : vous l’ajoutez à votre appareil depuis le navigateur, sans passer par un magasin. / AC is a web app (PWA): you add it to your device from the browser, without a store.</p>
+    <a class="button" id="store" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener" hidden>Installer Asimov AC depuis le Microsoft Store / Install Asimov AC from the Microsoft Store</a>
+    <a class="button" id="play" href="https://play.google.com/store/apps/details?id=com.pmeig.ac" rel="noopener" hidden>Installer Asimov AC depuis Google Play / Install Asimov AC from Google Play</a>
+    <p id="pwa-intro">AC est une application web (PWA) : vous l’ajoutez à votre appareil depuis le navigateur, sans passer par un magasin. / AC is a web app (PWA): you add it to your device from the browser, without a store.</p>
     <div id="steps"></div>
-    <p>Google Play : bientôt disponible. Microsoft Store : bientôt disponible. / Google Play: coming soon. Microsoft Store: coming soon.</p>
+    <p>Disponible sur / Available on : <a id="store-link" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener">Microsoft Store</a> <a id="play-link" href="https://play.google.com/store/apps/details?id=com.pmeig.ac" rel="noopener">Google Play</a></p>
   </section>
 
   <noscript><p>JavaScript est nécessaire pour ouvrir cette invitation. / JavaScript is required to open this invitation.</p></noscript>
@@ -46,6 +52,7 @@
         if (/iPhone|iPad|iPod/i.test(ua)) return 'iphone';
         if (/Android/i.test(ua)) return 'android';
         if (/Macintosh|Mac OS X/i.test(ua) && touchPoints > 1) return 'iphone';
+        if (/Windows NT/i.test(ua) && !/Windows Phone/i.test(ua)) return 'windows';
         return 'desktop';
       }
 
@@ -59,6 +66,10 @@
           'Ouvrez cette page dans Chrome. / Open this page in Chrome.',
           'Touchez le menu (les trois points en haut à droite). / Tap the menu (the three dots at the top right).',
           'Choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application », puis confirmez. / Choose “Add to Home screen” or “Install app”, then confirm.'
+        ],
+        windows: [
+          'Ouvrez cette page dans Chrome ou Edge. / Open this page in Chrome or Edge.',
+          'Cliquez sur l’icône d’installation à droite de la barre d’adresse, puis sur « Installer ». / Click the install icon at the right of the address bar, then “Install”.'
         ],
         desktop: [
           'Ouvrez cette page dans Chrome, Edge ou Safari. / Open this page in Chrome, Edge or Safari.',
@@ -79,6 +90,18 @@
         list.appendChild(li);
       });
       steps.appendChild(list);
+      if (device === 'android') {
+        // Android: Google Play comes first, the web app (PWA) stays as the alternative.
+        document.getElementById('play').hidden = false;
+        document.getElementById('play-link').hidden = true;
+        document.getElementById('pwa-intro').textContent = 'Vous pouvez aussi ajouter AC depuis votre navigateur (application web, PWA). / You can also add AC from your browser (web app, PWA).';
+      }
+      if (device === 'windows') {
+        // Windows: the Microsoft Store comes first, the web app (PWA) stays as the alternative.
+        document.getElementById('store').hidden = false;
+        document.getElementById('store-link').hidden = true;
+        document.getElementById('pwa-intro').textContent = 'Vous pouvez aussi ajouter AC depuis votre navigateur (application web, PWA). / You can also add AC from your browser (web app, PWA).';
+      }
       install.hidden = false;
 
       var fragment = new URLSearchParams(location.hash.slice(1));
