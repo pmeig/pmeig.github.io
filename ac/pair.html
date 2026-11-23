@@ -12,7 +12,9 @@
     h1 { font-size: 1.4rem; }
     h2 { font-size: 1.1rem; margin-top: 2.2rem; }
     a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
-    a.link { display: block; margin: 0.5rem 0; }
+    a.link { display: block; margin: 0.5rem 0; padding: 0.7rem 0.5rem; min-height: 3rem; box-sizing: border-box; }
+    a.button { min-height: 3rem; box-sizing: border-box; }
+    a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
     #install { border-top: 1px solid currentColor; margin-top: 2.5rem; opacity: 0.95; }
     [hidden] { display: none; }
   </style>
@@ -94,8 +96,14 @@
         setText('Choisissez le paquet de votre système.', 'Choose the package for your system.');
         addLink('.deb : Debian, Ubuntu / Debian, Ubuntu', DOWNLOADS.deb);
         addLink('.rpm : Fedora et dérivés / Fedora and derivatives', DOWNLOADS.rpm);
-      } else if (os === 'windows') {
-        setText('Bientôt disponible sur le Microsoft Store.', 'Coming soon to the Microsoft Store.');
+      } else if (os === 'windows' && !/Windows Phone/i.test(navigator.userAgent)) {
+        setText('L’exécuteur est disponible sur le Microsoft Store.', 'The executor is available on the Microsoft Store.');
+        var store = document.createElement('a');
+        store.className = 'button';
+        store.href = 'https://apps.microsoft.com/detail/9N5W0Z9WRPTG';
+        store.rel = 'noopener';
+        store.textContent = 'Installer Positron AC depuis le Microsoft Store / Install Positron AC from the Microsoft Store';
+        installLinks.appendChild(store);
         installText.textContent += ' L’application web reste disponible dans le navigateur. / The web app stays available in the browser.';
       } else {
         setText("L’exécuteur n’est pas encore disponible pour ce système.", 'The executor is not available for this system yet.');
