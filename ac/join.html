@@ -9,6 +9,17 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090a1c">
   <link rel="stylesheet" href="theme.css">
+  <style>
+    /* Download choice of the install section: 48 px targets, commands wrap on a phone. */
+    #install h3 { margin: 1.6rem 0 0.4rem; font-size: 1rem; font-weight: 600; }
+    #install code { display: inline-block; max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+    #install ul.downloads { list-style: none; margin: 0; padding: 0; text-align: left; }
+    #install ul.downloads li { margin: 0; padding: 10px 0; border-top: 1px solid var(--ac-edge); max-width: none; }
+    #install ul.downloads li:first-child { border-top: 0; }
+    #install ul.downloads a { display: inline-flex; align-items: center; min-height: var(--ac-touch); }
+    #install .hint { color: var(--ac-dim); font-size: 0.95rem; }
+    #cta .command { margin: 0 0 12px; }
+  </style>
 </head>
 <body class="ac-page ac-page--card">
   <header class="ac-brand"><img src="asimov-ac-mark.svg" alt="" width="44" height="44"><span>Asimov AC</span></header>
@@ -20,16 +31,32 @@
     <p>Si la page ne s’ouvre pas toute seule, utilisez ce bouton. Une invitation est valable 15 minutes. / If the page does not open by itself, use this button. An invitation is valid for 15 minutes.</p>
   </div>
 
-  <section id="install" hidden>
+  <section id="install">
     <h2>Vous n’avez pas encore AC ? / You do not have AC yet?</h2>
-    <a class="button" id="store" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener" hidden>Installer Asimov AC depuis le Microsoft Store / Install Asimov AC from the Microsoft Store</a>
-    <a class="button" id="play" href="https://play.google.com/store/apps/details?id=com.pmeig.ac" rel="noopener" hidden>Installer Asimov AC depuis Google Play / Install Asimov AC from Google Play</a>
-    <p id="pwa-intro">AC est une application web (PWA) : vous l’ajoutez à votre appareil depuis le navigateur, sans passer par un magasin. / AC is a web app (PWA): you add it to your device from the browser, without a store.</p>
-    <div id="steps"></div>
-    <p>Disponible sur / Available on : <a id="store-link" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener">Microsoft Store</a> <a id="play-link" href="https://play.google.com/store/apps/details?id=com.pmeig.ac" rel="noopener">Google Play</a></p>
+    <div id="cta" aria-live="polite"></div>
+    <div id="pwa" hidden>
+      <h3>Application web (PWA) / Web app (PWA)</h3>
+      <p id="pwa-intro">AC est une application web (PWA) : vous l’ajoutez à votre appareil depuis le navigateur, sans passer par un magasin. / AC is a web app (PWA): you add it to your device from the browser, without a store.</p>
+      <div id="steps"></div>
+    </div>
+
+    <h3>Autres systèmes / Other systems</h3>
+    <!-- The download URLs live ONLY here (data-dl): the script reads them from these links, so a rename is a one-line change. -->
+    <ul class="downloads" id="downloads">
+      <li>Windows : <a data-dl="store" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener">Microsoft Store</a></li>
+      <li>Android : <a data-dl="play" href="https://play.google.com/store/apps/details?id=com.pmeig.ac" rel="noopener">Google Play</a></li>
+      <li>macOS : <a data-dl="dmg" href="https://pmeig-ac.duckdns.org:18443/downloads/asimov-ac/latest/Asimov-AC.dmg" rel="noopener">Asimov-AC.dmg</a><br>
+        <span class="hint">Non signé, pour Mac Apple silicon (M1 et suivants) : la première fois, clic droit puis Ouvrir. Mac Intel non pris en charge pour l’instant. / Unsigned, for Apple silicon Macs (M1 and later): the first time, right-click then Open. Intel Macs are not supported yet.</span></li>
+      <li>Linux (Debian, Ubuntu, Mint…) : <a data-dl="deb" href="https://pmeig-ac.duckdns.org:18443/downloads/asimov-ac/latest/Asimov-AC.deb" rel="noopener">Asimov-AC.deb</a><br>
+        <code>sudo apt install ./Asimov-AC.deb</code></li>
+      <li>Linux (Fedora, openSUSE, RHEL…) : <a data-dl="rpm" href="https://pmeig-ac.duckdns.org:18443/downloads/asimov-ac/latest/Asimov-AC.rpm" rel="noopener">Asimov-AC.rpm</a><br>
+        <code>sudo dnf install ./Asimov-AC.rpm</code></li>
+      <li>iPhone, iPad, autres / others : <span class="hint">application web (PWA) : dans le navigateur, « Sur l’écran d’accueil » (Safari) ou « Installer » (Chrome, Edge). / web app (PWA): in the browser, “Add to Home Screen” (Safari) or “Install” (Chrome, Edge).</span></li>
+    </ul>
+    <p><a data-dl="all" href="https://pmeig-ac.duckdns.org:18443/downloads/" rel="noopener">Toutes les versions / All versions</a></p>
   </section>
 
-  <noscript><p>JavaScript est nécessaire pour ouvrir cette invitation. / JavaScript is required to open this invitation.</p></noscript>
+  <noscript><p>JavaScript est nécessaire pour ouvrir cette invitation ; les téléchargements ci-dessus fonctionnent sans. / JavaScript is required to open this invitation; the downloads above work without it.</p></noscript>
 
   <script>
     (function () {
@@ -37,13 +64,25 @@
       // The code stays in the fragment: it is read from location.hash only and is never put in a query string or sent in a request.
       var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/invitations/accept';
 
-      // One instruction set per device. Order matters: iPadOS may announce itself as a Mac, Android also contains "Linux".
-      function deviceOf(ua, touchPoints) {
+      // Which system? Never required: without this script the page shows the full list of downloads.
+      // Order matters: iPadOS may announce itself as a Mac, Android also contains "Linux".
+      function osOf(ua, touchPoints, platform) {
+        var p = (platform || '').toLowerCase();
         if (/iPhone|iPad|iPod/i.test(ua)) return 'iphone';
-        if (/Android/i.test(ua)) return 'android';
+        if (/Android/i.test(ua) || p === 'android') return 'android';
         if (/Macintosh|Mac OS X/i.test(ua) && touchPoints > 1) return 'iphone';
-        if (/Windows NT/i.test(ua) && !/Windows Phone/i.test(ua)) return 'windows';
-        return 'desktop';
+        if ((/Windows NT/i.test(ua) && !/Windows Phone/i.test(ua)) || p === 'windows') return 'windows';
+        if (/CrOS/i.test(ua) || p === 'chrome os') return 'other';
+        if (/Macintosh|Mac OS X/i.test(ua) || p === 'macos') return 'macos';
+        if (/Linux|X11/i.test(ua) || p === 'linux') return 'linux';
+        return 'other';
+      }
+
+      // The browser does not expose the distribution: only the tokens some user agents carry.
+      function linuxKindOf(ua) {
+        if (/Ubuntu|Debian|Mint|Pop!_OS|Kali|Raspbian|Devuan|elementary|Zorin|MX Linux/i.test(ua)) return 'deb';
+        if (/Fedora|Red Hat|RedHat|RHEL|CentOS|Rocky|Alma|SUSE|Mageia|Oracle Linux/i.test(ua)) return 'rpm';
+        return 'unknown';
       }
 
       var STEPS = {
@@ -68,31 +107,87 @@
         ]
       };
 
-      var message = document.getElementById('message');
-      var steps = document.getElementById('steps');
-      var install = document.getElementById('install');
+      var BUTTONS = {
+        store: 'Installer Asimov AC depuis le Microsoft Store / Install Asimov AC from the Microsoft Store',
+        play: 'Installer Asimov AC depuis Google Play / Install Asimov AC from Google Play',
+        dmg: 'Télécharger Asimov AC pour macOS (.dmg) / Download Asimov AC for macOS (.dmg)',
+        deb: 'Télécharger le paquet .deb / Download the .deb package',
+        rpm: 'Télécharger le paquet .rpm / Download the .rpm package'
+      };
+      var COMMANDS = { deb: 'sudo apt install ./Asimov-AC.deb', rpm: 'sudo dnf install ./Asimov-AC.rpm' };
+      var MAC_NOTE = 'Application non signée, pour Mac Apple silicon (M1 et suivants). La première fois : clic droit sur l’application, puis Ouvrir. Les Mac Intel ne sont pas encore pris en charge ; votre navigateur ne permet pas de savoir de quel type est votre Mac. / Unsigned app, for Apple silicon Macs (M1 and later). The first time: right-click the app, then Open. Intel Macs are not supported yet; your browser cannot tell which kind of Mac you have.';
 
-      var device = deviceOf(navigator.userAgent, navigator.maxTouchPoints || 0);
+      var message = document.getElementById('message');
+      var cta = document.getElementById('cta');
+
+      // The URLs are read from the links of the "Other systems" list: the only place where they are written.
+      function urlOf(key) {
+        var a = document.querySelector('a[data-dl="' + key + '"]');
+        return a ? a.href : '';
+      }
+      function addButton(key) {
+        var a = document.createElement('a');
+        a.className = 'button';
+        a.href = urlOf(key);
+        a.rel = 'noopener';
+        a.textContent = BUTTONS[key];
+        cta.appendChild(a);
+        if (COMMANDS[key]) {
+          var p = document.createElement('p');
+          p.className = 'command';
+          p.appendChild(document.createTextNode('Puis / Then : '));
+          var c = document.createElement('code');
+          c.textContent = COMMANDS[key];
+          p.appendChild(c);
+          cta.appendChild(p);
+        }
+      }
+      function addNote(text) {
+        var p = document.createElement('p');
+        p.className = 'hint';
+        p.textContent = text;
+        cta.appendChild(p);
+      }
+
+      var ua = navigator.userAgent;
+      var uaPlatform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+      var os = osOf(ua, navigator.maxTouchPoints || 0, uaPlatform);
+
+      if (os === 'windows') {
+        addButton('store');
+      } else if (os === 'android') {
+        addButton('play');
+      } else if (os === 'macos') {
+        addButton('dmg');
+        addNote(MAC_NOTE);
+      } else if (os === 'linux') {
+        var kind = linuxKindOf(ua);
+        if (kind === 'deb') {
+          addButton('deb');
+          addNote('D’après votre navigateur, vous êtes sur une distribution de la famille Debian (Ubuntu, Mint…) ; c’est une supposition. Si ce n’est pas le cas, prenez le .rpm dans « Autres systèmes ». / From your browser, you seem to use a Debian-family distribution (Ubuntu, Mint…); this is a guess. If not, take the .rpm in “Other systems”.');
+        } else if (kind === 'rpm') {
+          addButton('rpm');
+          addNote('D’après votre navigateur, vous êtes sur une distribution de la famille RPM (Fedora, openSUSE, RHEL…) ; c’est une supposition. Si ce n’est pas le cas, prenez le .deb dans « Autres systèmes ». / From your browser, you seem to use an RPM-family distribution (Fedora, openSUSE, RHEL…); this is a guess. If not, take the .deb in “Other systems”.');
+        } else {
+          addNote('Votre navigateur ne permet pas de savoir quelle distribution Linux vous utilisez. Debian, Ubuntu, Mint… : .deb ; Fedora, openSUSE, RHEL… : .rpm. / Your browser cannot tell which Linux distribution you use. Debian, Ubuntu, Mint…: .deb; Fedora, openSUSE, RHEL…: .rpm.');
+          addButton('deb');
+          addButton('rpm');
+        }
+      }
+
+      // The web app (PWA) steps: the main choice on iPhone, iPad and unknown systems, the alternative elsewhere.
+      var steps = document.getElementById('steps');
       var list = document.createElement('ol');
-      STEPS[device].forEach(function (text) {
+      STEPS[STEPS[os] ? os : 'desktop'].forEach(function (text) {
         var li = document.createElement('li');
         li.textContent = text;
         list.appendChild(li);
       });
       steps.appendChild(list);
-      if (device === 'android') {
-        // Android: Google Play comes first, the web app (PWA) stays as the alternative.
-        document.getElementById('play').hidden = false;
-        document.getElementById('play-link').hidden = true;
+      if (os !== 'iphone' && os !== 'other') {
         document.getElementById('pwa-intro').textContent = 'Vous pouvez aussi ajouter AC depuis votre navigateur (application web, PWA). / You can also add AC from your browser (web app, PWA).';
       }
-      if (device === 'windows') {
-        // Windows: the Microsoft Store comes first, the web app (PWA) stays as the alternative.
-        document.getElementById('store').hidden = false;
-        document.getElementById('store-link').hidden = true;
-        document.getElementById('pwa-intro').textContent = 'Vous pouvez aussi ajouter AC depuis votre navigateur (application web, PWA). / You can also add AC from your browser (web app, PWA).';
-      }
-      install.hidden = false;
+      document.getElementById('pwa').hidden = false;
 
       var fragment = new URLSearchParams(location.hash.slice(1));
       if (!fragment.get('code')) {
