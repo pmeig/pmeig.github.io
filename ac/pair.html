@@ -10,7 +10,15 @@
   <meta name="theme-color" content="#090a1c">
   <link rel="stylesheet" href="theme.css">
   <style>
-    /* Download links of the install section: 48 px targets, text links. */
+    /* Install section: 48 px targets, steps left-aligned, commands wrap on a phone. */
+    #install h3 { margin: 1.6rem 0 0.6rem; font-size: 1rem; font-weight: 600; }
+    #install ol { text-align: left; margin: 12px 0 0; padding-left: 1.4rem; }
+    #install li { margin: 6px 0; max-width: none; }
+    #install .button { margin: 6px 0; }
+    #install code { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
+    #install .hint { color: var(--ac-dim); font-size: 0.95rem; }
+    #os-list { display: flex; flex-direction: column; }
+    #os-list .is-mine { order: -1; }
     a.link { display: flex; align-items: center; justify-content: center; min-height: var(--ac-touch); margin: 6px 0; padding: 8px 4px; }
   </style>
 </head>
@@ -21,45 +29,74 @@
 
   <div id="actions" hidden>
     <a class="button" id="web" href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
-    <p>Si la page ne s’ouvre pas toute seule, utilisez ce lien. / If the page does not open by itself, use this link.</p>
+    <p>Vous pouvez aussi relier cet appareil depuis le navigateur, sans rien installer. / You can also link this device from the browser, without installing anything.</p>
   </div>
 
-  <section id="install" hidden>
-    <h2>Installer l’exécuteur / Install the executor</h2>
-    <p id="install-text"></p>
-    <div id="install-links"></div>
+  <section id="install">
+    <h2>Installer Positron AC / Install Positron AC</h2>
+    <p>Positron AC est l’application qui relie cet ordinateur à votre compte. Installez-la, ouvrez-la, puis saisissez le code d’appairage. / Positron AC is the app that links this computer to your account. Install it, open it, then type the pairing code.</p>
+
+    <div id="os-list">
+      <div id="os-windows">
+        <h3>Windows</h3>
+        <a class="button" href="https://apps.microsoft.com/detail/9N5W0Z9WRPTG" rel="noopener">Installer Positron AC depuis le Microsoft Store / Install Positron AC from the Microsoft Store</a>
+        <ol>
+          <li>Installez Positron AC depuis le Microsoft Store. / Install Positron AC from the Microsoft Store.</li>
+          <li>Ouvrez Positron AC depuis le menu Démarrer. / Open Positron AC from the Start menu.</li>
+          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
+        </ol>
+      </div>
+
+      <div id="os-macos">
+        <h3>macOS</h3>
+        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.dmg" rel="noopener">Mac Apple silicon (M1 et suivants) : télécharger le .dmg / Apple silicon Mac (M1 and later): download the .dmg</a>
+        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC_x64.dmg" rel="noopener">Mac Intel : télécharger le .dmg / Intel Mac: download the .dmg</a>
+        <p class="hint">Pour savoir quel Mac vous avez : menu Pomme, puis « À propos de ce Mac ». / To find out which Mac you have: Apple menu, then “About This Mac”.</p>
+        <ol>
+          <li>Ouvrez le fichier .dmg téléchargé, puis glissez Positron AC dans le dossier Applications. / Open the downloaded .dmg file, then drag Positron AC into the Applications folder.</li>
+          <li>Ouvrez Positron AC depuis le dossier Applications. / Open Positron AC from the Applications folder.</li>
+          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
+        </ol>
+      </div>
+
+      <div id="os-linux">
+        <h3>Linux (64 bits, x86_64)</h3>
+        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.deb" rel="noopener">Debian, Ubuntu, Mint : télécharger le .deb / Debian, Ubuntu, Mint: download the .deb</a>
+        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.rpm" rel="noopener">Fedora, openSUSE, RHEL : télécharger le .rpm / Fedora, openSUSE, RHEL: download the .rpm</a>
+        <ol>
+          <li>Installez le paquet : double-clic dans votre gestionnaire de logiciels, ou dans un terminal <code>sudo apt install ./Positron-AC.deb</code> (.deb) ou <code>sudo dnf install ./Positron-AC.rpm</code> (.rpm). / Install the package: double-click it in your software manager, or in a terminal <code>sudo apt install ./Positron-AC.deb</code> (.deb) or <code>sudo dnf install ./Positron-AC.rpm</code> (.rpm).</li>
+          <li>Ouvrez Positron AC depuis le menu des applications. / Open Positron AC from the applications menu.</li>
+          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
+        </ol>
+      </div>
+    </div>
+    <p><a class="link" href="https://pmeig-ac.duckdns.org:18443/downloads/" rel="noopener">Toutes les versions / All versions</a></p>
   </section>
 
-  <noscript><p>JavaScript est nécessaire pour ouvrir cette page. / JavaScript is required to open this page.</p></noscript>
+  <noscript><p>JavaScript est nécessaire pour ouvrir l’application web ; les téléchargements ci-dessus fonctionnent sans. / JavaScript is required to open the web app; the downloads above work without it.</p></noscript>
 
   <script>
     (function () {
-      // Download files of the executor program. THESE FILES DO NOT EXIST YET: change the names or the base when they are published.
-      var DOWNLOADS = {
-        base: 'https://pmeig-ac.duckdns.org:18443/telecharger/',
-        macos: 'ac-executor-macos',
-        deb: 'ac-executor-linux.deb',
-        rpm: 'ac-executor-linux.rpm'
-      };
-
       // Web app (PWA). The fragment (#code=…&k=…) is appended as it is, never sent to a server.
       var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/executors/pair';
 
       // Operating system from the user agent. Order matters: Android and iOS also contain "Linux" or "Mac OS X".
       function osOf(ua, touchPoints) {
         if (/iPhone|iPad|iPod/i.test(ua)) return 'other';
-        if (/Android/i.test(ua)) return 'android';
+        if (/Android/i.test(ua)) return 'other';
         if (/Macintosh|Mac OS X/i.test(ua)) return touchPoints > 1 ? 'other' : 'macos';
-        if (/Windows/i.test(ua)) return 'windows';
+        if (/Windows/i.test(ua) && !/Windows Phone/i.test(ua)) return 'windows';
         if (/Linux|X11/i.test(ua)) return 'linux';
         return 'other';
       }
 
       var message = document.getElementById('message');
       var actions = document.getElementById('actions');
-      var install = document.getElementById('install');
-      var installText = document.getElementById('install-text');
-      var installLinks = document.getElementById('install-links');
+
+      // The detected system comes first; the others stay visible below.
+      var os = osOf(navigator.userAgent, navigator.maxTouchPoints || 0);
+      var mine = document.getElementById('os-' + os);
+      if (mine) mine.className = 'is-mine';
 
       // The fragment holds the pairing code: it is read from location.hash only.
       var fragment = new URLSearchParams(location.hash.slice(1));
@@ -70,46 +107,7 @@
 
       document.getElementById('web').href = WEB_APP + location.hash;
       actions.hidden = false;
-
-      function addLink(label, file) {
-        var a = document.createElement('a');
-        a.className = 'link';
-        a.href = DOWNLOADS.base + file;
-        a.rel = 'noopener';
-        a.textContent = label;
-        installLinks.appendChild(a);
-      }
-
-      function setText(fr, en) {
-        installText.textContent = fr + ' / ' + en;
-      }
-
-      var os = osOf(navigator.userAgent, navigator.maxTouchPoints || 0);
-      if (os === 'macos') {
-        setText('Téléchargez le programme de l’exécuteur pour macOS.', 'Download the executor program for macOS.');
-        addLink('Télécharger pour macOS / Download for macOS', DOWNLOADS.macos);
-      } else if (os === 'linux') {
-        setText('Choisissez le paquet de votre système.', 'Choose the package for your system.');
-        addLink('.deb : Debian, Ubuntu / Debian, Ubuntu', DOWNLOADS.deb);
-        addLink('.rpm : Fedora et dérivés / Fedora and derivatives', DOWNLOADS.rpm);
-      } else if (os === 'windows' && !/Windows Phone/i.test(navigator.userAgent)) {
-        setText('L’exécuteur est disponible sur le Microsoft Store.', 'The executor is available on the Microsoft Store.');
-        var store = document.createElement('a');
-        store.className = 'button';
-        store.href = 'https://apps.microsoft.com/detail/9N5W0Z9WRPTG';
-        store.rel = 'noopener';
-        store.textContent = 'Installer Positron AC depuis le Microsoft Store / Install Positron AC from the Microsoft Store';
-        installLinks.appendChild(store);
-        installText.textContent += ' L’application web reste disponible dans le navigateur. / The web app stays available in the browser.';
-      } else {
-        setText("L’exécuteur n’est pas encore disponible pour ce système.", 'The executor is not available for this system yet.');
-      }
-      install.hidden = false;
-
-      // Every device: the page opens the web app on its own, with the fragment unchanged.
-      // The buttons and the install section above stay as the fallback if the redirect does not happen.
-      message.textContent = "Ouverture de l’application web… / Opening the web app…";
-      location.replace(WEB_APP + location.hash);
+      message.textContent = "Installez Positron AC ci-dessous, ou ouvrez l’application web. / Install Positron AC below, or open the web app.";
     })();
   </script>
 </body>
