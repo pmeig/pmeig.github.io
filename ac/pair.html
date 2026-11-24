@@ -6,20 +6,16 @@
   <meta name="robots" content="noindex">
   <meta name="referrer" content="no-referrer">
   <title>AC – Relier l’exécuteur</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090a1c">
+  <link rel="stylesheet" href="theme.css">
   <style>
-    :root { color-scheme: light dark; }
-    body { font: 16px/1.55 system-ui, sans-serif; max-width: 30rem; margin: 0 auto; padding: 2rem 1.25rem; text-align: center; }
-    h1 { font-size: 1.4rem; }
-    h2 { font-size: 1.1rem; margin-top: 2.2rem; }
-    a.button { display: block; margin: 0.75rem 0; padding: 0.8rem 1rem; border-radius: 1.5rem; background: #6750a4; color: #fff; text-decoration: none; font-weight: 500; }
-    a.link { display: block; margin: 0.5rem 0; padding: 0.7rem 0.5rem; min-height: 3rem; box-sizing: border-box; }
-    a.button { min-height: 3rem; box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
-    #install { border-top: 1px solid currentColor; margin-top: 2.5rem; opacity: 0.95; }
-    [hidden] { display: none; }
+    /* Download links of the install section: 48 px targets, text links. */
+    a.link { display: flex; align-items: center; justify-content: center; min-height: var(--ac-touch); margin: 6px 0; padding: 8px 4px; }
   </style>
 </head>
-<body>
+<body class="ac-page ac-page--card">
+  <header class="ac-brand"><img src="asimov-ac-mark.svg" alt="" width="44" height="44"><span>Asimov AC</span></header>
   <h1>Relier l’exécuteur / Link the executor</h1>
   <p id="message">Choisissez comment continuer. / Choose how to continue.</p>
 
