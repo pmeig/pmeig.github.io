@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>AC – Nouveau mot de passe</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090a1c">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body class="ac-page ac-page--card">
+  <header class="ac-brand"><img src="asimov-ac-mark.svg" alt="" width="44" height="44"><span>Asimov AC</span></header>
+  <h1>Nouveau mot de passe / New password</h1>
+  <p id="message">Ouverture de la page… / Opening the page…</p>
+
+  <div id="actions" hidden>
+    <a class="button" id="web" href="#" rel="noopener">Choisir un nouveau mot de passe / Choose a new password</a>
+    <p>Si la page ne s’ouvre pas toute seule, utilisez ce bouton. / If the page does not open by itself, use this button.</p>
+  </div>
+
+  <noscript><p>JavaScript est nécessaire pour ouvrir ce lien. / JavaScript is required to open this link.</p></noscript>
+
+  <script>
+    (function () {
+      // Mail link: https://pmeig.github.io/ac/nouveau-mot-de-passe#<token>
+      // On Android with the app installed, the App Link opens the app and this page is not shown.
+      // Otherwise the page forwards to the server page. The token stays in the fragment: it is read from location.hash only
+      // and is never put in a query string or sent in a request by this page.
+      var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/nouveau-mot-de-passe';
+
+      var message = document.getElementById('message');
+
+      if (location.hash.length < 2) {
+        message.textContent = "Ce lien est incomplet. Un lien de réinitialisation est valable un temps limité : demandez-en un nouveau depuis l’écran de connexion. / This link is incomplete. A reset link is valid for a limited time: ask for a new one from the sign-in screen.";
+        return;
+      }
+
+      document.getElementById('web').href = WEB_APP + location.hash;
+      document.getElementById('actions').hidden = false;
+      location.replace(WEB_APP + location.hash);
+    })();
+  </script>
+</body>
+</html>
