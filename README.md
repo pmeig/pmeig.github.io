@@ -13,7 +13,7 @@ reachable on port 18443 (shared IPv4 of the box), and Android only verifies App 
 | `/ac/join.html#code=…` | Invitation relay of AC: opens the web app with the code kept in the URL fragment; Windows devices also get a Microsoft Store button (added 2026-11-23, the link works once the app is published) |
 | `/ac/confirmer-adresse#…`, `/ac/nouveau-mot-de-passe#…`, `/ac/repartir-de-zero#…` | Mail links of AC (address confirmation, password reset, restart): Android App Links open the app when it is installed; otherwise the page forwards the fragment unchanged to the same page of the AC server (no token in a query string, no secret here) |
 | `/ac/pair.html#…` | Pairing page opened by the QR code of the executor: install guide of Positron AC (Microsoft Store, .dmg, .deb, .rpm) or open the web app; shows the Positron AC mark |
-| `/ac/asimov-ac-mark.svg`, `/ac/positron-ac-mark.svg` | Marks (44x44 header image) of Asimov AC (orb, orbit, moon: every AC page except pair) and of Positron AC (twin planets joined by an infinity-shaped dashed ring: pair page) |
+| `/ac/asimov-ac-mark.svg`, `/ac/positron-ac-mark.svg` | Marks (44x44 header image) of Asimov AC (Saturn Band, ringed planet on an opaque dark square, simplified small-size master: every AC page except pair) and of Positron AC (twin planets joined by an infinity-shaped dashed ring: pair page) |
 | `/ac/privacy.html` | Privacy policy of AC (French then English; source of truth) |
 | `/ac/delete-account.html` | Account deletion page of AC (French then English; source of truth) |
 
