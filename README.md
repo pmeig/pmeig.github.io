@@ -12,11 +12,13 @@ reachable on port 18443 (shared IPv4 of the box), and Android only verifies App 
 | `/budget/delete-account.html` | Account deletion page (source of truth; it was removed from `web/public/` of pmeig/budget) |
 | `/ac/join.html#code=…` | Invitation relay of AC: opens the web app with the code kept in the URL fragment; Windows devices also get a Microsoft Store button (added 2026-11-23, the link works once the app is published) |
 | `/ac/confirmer-adresse#…`, `/ac/nouveau-mot-de-passe#…`, `/ac/repartir-de-zero#…` | Mail links of AC (address confirmation, password reset, restart): Android App Links open the app when it is installed; otherwise the page forwards the fragment unchanged to the same page of the AC server (no token in a query string, no secret here) |
-| `/ac/pair.html#…` | Pairing page opened by the QR code of the executor: install guide of Positron AC (Microsoft Store, .dmg, .deb, .rpm) or open the web app; shows the Positron AC mark |
-| `/ac/asimov-ac-mark.svg`, `/ac/positron-ac-mark.svg` | Marks (44x44 header image) of Asimov AC (Saturn Band, ringed planet on an opaque dark square, simplified small-size master: every AC page except pair) and of Positron AC (twin planets joined by an infinity-shaped dashed ring: pair page) |
+| `/ac/pair#code=…&k=…` | QR code of a computer (Positron AC): opens AC, or offers to install it, per system (Android: `intent://` to the app, web app, Google Play with the install referrer; iPhone/iPad: copy the code, web app; Windows: `asimov-ac:`, Microsoft Store, web app; macOS/Linux: `asimov-ac:`, web app). `PLAY_PUBLIC` in the script: `false` while AC is in closed testing on Google Play. Nothing opens or downloads without a tap. Asimov AC mark |
+| `/ac/computer#code=…` | Link shown by AC for Positron AC: open it (`positron-ac:/link#code=…`) or install it (Microsoft Store, .dmg, .deb, .rpm); on a phone or tablet, only says to open the link on the computer, with a copy button. Positron AC mark |
+| `/.well-known/windows-app-web-link` | Windows app links of this host: Asimov AC opens `/ac/pair`, Positron AC opens `/ac/computer` (package family names of the Store identities, `desktop/store/identity.json` and `positron/store/identity.json` of pmeig/AC) |
+| `/ac/asimov-ac-mark.svg`, `/ac/positron-ac-mark.svg` | Marks (44x44 header image) of Asimov AC (Saturn Band, ringed planet on an opaque dark square, simplified small-size master: every AC page except computer) and of Positron AC (« fused cross »: a planet with two crossed rings, small-size master: computer page) |
 | `/ac/privacy.html` | Privacy policy of AC (French then English; source of truth) |
 | `/ac/delete-account.html` | Account deletion page of AC (French then English; source of truth) |
 
-No secret here: the invitation token is only in the link that is shared, like before.
+No secret here: the invitation token is only in the link that is shared, like before. The pairing codes of AC stay after the `#`, never sent to this site; the one exception is the Google Play link of `/ac/pair`, whose install referrer carries them to Google (a 5-minute code and the public code of the machine).
 
 The privacy and account deletion pages are edited here only.
