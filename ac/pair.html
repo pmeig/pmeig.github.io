@@ -5,109 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <meta name="referrer" content="no-referrer">
-  <title>AC – Relier l’exécuteur</title>
+  <title>AC – Relier un ordinateur</title>
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090a1c">
   <link rel="stylesheet" href="theme.css">
   <style>
-    /* Install section: 48 px targets, steps left-aligned, commands wrap on a phone. */
-    #install h3 { margin: 1.6rem 0 0.6rem; font-size: 1rem; font-weight: 600; }
-    #install ol { text-align: left; margin: 12px 0 0; padding-left: 1.4rem; }
-    #install li { margin: 6px 0; max-width: none; }
-    #install .button { margin: 6px 0; }
-    #install code { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
-    #install .hint { color: var(--ac-dim); font-size: 0.95rem; }
-    #os-list { display: flex; flex-direction: column; }
-    #os-list .is-mine { order: -1; }
+    .code { display: block; margin: 4px 0 12px; font: 600 1.7rem/1.3 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.1em; user-select: all; }
+    button.button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: var(--ac-touch); margin: 12px 0; padding: 10px 20px; border: 1px solid transparent; border-radius: 24px; background: var(--ac-lilac); color: var(--ac-on-lilac); font: 600 1rem var(--ac-font); cursor: pointer; }
+    a.button.secondary, button.button.secondary { background: var(--ac-solid); border-color: var(--ac-edge); color: var(--ac-text); }
     a.link { display: flex; align-items: center; justify-content: center; min-height: var(--ac-touch); margin: 6px 0; padding: 8px 4px; }
+    .hint { color: var(--ac-dim); font-size: 0.95rem; }
   </style>
 </head>
 <body class="ac-page ac-page--card">
-  <header class="ac-brand"><img src="positron-ac-mark.svg" alt="" width="44" height="44"><span>Positron AC</span></header>
-  <h1>Relier l’exécuteur / Link the executor</h1>
-  <p id="message">Choisissez comment continuer. / Choose how to continue.</p>
+  <header class="ac-brand"><img src="asimov-ac-mark.svg" alt="" width="44" height="44"><span>Asimov AC</span></header>
+  <main>
+    <h1>Relier un ordinateur / Link a computer</h1>
+    <p id="message">Ce lien relie un ordinateur à votre compte AC. / This link links a computer to your AC account.</p>
 
-  <div id="actions" hidden>
-    <a class="button" id="web" href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
-    <p>Vous pouvez aussi relier cet appareil depuis le navigateur, sans rien installer. / You can also link this device from the browser, without installing anything.</p>
-  </div>
+    <div id="ready" hidden>
+      <p class="hint">Code de l’ordinateur, valable 5 minutes / Computer code, valid for 5 minutes</p>
+      <output class="code" id="code"></output>
 
-  <section id="install">
-    <h2>Installer Positron AC / Install Positron AC</h2>
-    <p>Positron AC est l’application qui relie cet ordinateur à votre compte. Installez-la, ouvrez-la, puis saisissez le code d’appairage. / Positron AC is the app that links this computer to your account. Install it, open it, then type the pairing code.</p>
-
-    <div id="os-list">
-      <div id="os-windows">
-        <h3>Windows</h3>
-        <a class="button" href="https://apps.microsoft.com/detail/9N5W0Z9WRPTG" rel="noopener">Installer Positron AC depuis le Microsoft Store / Install Positron AC from the Microsoft Store</a>
-        <ol>
-          <li>Installez Positron AC depuis le Microsoft Store. / Install Positron AC from the Microsoft Store.</li>
-          <li>Ouvrez Positron AC depuis le menu Démarrer. / Open Positron AC from the Start menu.</li>
-          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
-        </ol>
+      <!-- One block per system: the script shows exactly one. Nothing opens or downloads before a tap. -->
+      <div data-os="android" hidden>
+        <a class="button" id="android-open" href="#">Ouvrir dans AC / Open in AC</a>
+        <a class="button" id="android-play" href="#" rel="noopener" hidden>Installer AC depuis Google Play / Install AC from Google Play</a>
+        <a class="button secondary" data-web href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
+        <a class="link" id="android-testers" href="#" rel="noopener" hidden>Installer depuis Google Play (testeurs) / Install from Google Play (testers)</a>
       </div>
 
-      <div id="os-macos">
-        <h3>macOS</h3>
-        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.dmg" rel="noopener">Mac Apple silicon (M1 et suivants) : télécharger le .dmg / Apple silicon Mac (M1 and later): download the .dmg</a>
-        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC_x64.dmg" rel="noopener">Mac Intel : télécharger le .dmg / Intel Mac: download the .dmg</a>
-        <p class="hint">Pour savoir quel Mac vous avez : menu Pomme, puis « À propos de ce Mac ». / To find out which Mac you have: Apple menu, then “About This Mac”.</p>
-        <ol>
-          <li>Ouvrez le fichier .dmg téléchargé, puis glissez Positron AC dans le dossier Applications. / Open the downloaded .dmg file, then drag Positron AC into the Applications folder.</li>
-          <li>Ouvrez Positron AC depuis le dossier Applications. / Open Positron AC from the Applications folder.</li>
-          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
-        </ol>
+      <div data-os="ios" hidden>
+        <button type="button" class="button" id="copy">Copier le code / Copy the code</button>
+        <p class="hint" id="copied" role="status"></p>
+        <a class="button secondary" data-web href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
+        <p class="hint">Si vous utilisez déjà AC sur l’écran d’accueil, ouvrez-la et collez le code. Sinon, ouvrez l’application web dans Safari et connectez-vous ; vous pourrez ensuite l’ajouter à l’écran d’accueil. / If you already use AC from your Home Screen, open it and paste the code. Otherwise open the web app in Safari and sign in; you can then add it to your Home Screen.</p>
       </div>
 
-      <div id="os-linux">
-        <h3>Linux (64 bits, x86_64)</h3>
-        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.deb" rel="noopener">Debian, Ubuntu, Mint : télécharger le .deb / Debian, Ubuntu, Mint: download the .deb</a>
-        <a class="button" href="https://pmeig-ac.duckdns.org:18443/downloads/positron-ac/latest/Positron-AC.rpm" rel="noopener">Fedora, openSUSE, RHEL : télécharger le .rpm / Fedora, openSUSE, RHEL: download the .rpm</a>
-        <ol>
-          <li>Installez le paquet : double-clic dans votre gestionnaire de logiciels, ou dans un terminal <code>sudo apt install ./Positron-AC.deb</code> (.deb) ou <code>sudo dnf install ./Positron-AC.rpm</code> (.rpm). / Install the package: double-click it in your software manager, or in a terminal <code>sudo apt install ./Positron-AC.deb</code> (.deb) or <code>sudo dnf install ./Positron-AC.rpm</code> (.rpm).</li>
-          <li>Ouvrez Positron AC depuis le menu des applications. / Open Positron AC from the applications menu.</li>
-          <li>Saisissez le code d’appairage, puis validez. / Type the pairing code, then confirm.</li>
-        </ol>
+      <div data-os="windows" hidden>
+        <a class="button" data-app href="#">Ouvrir AC / Open AC</a>
+        <a class="button secondary" href="ms-windows-store://pdp/?ProductId=9NDV21MWS379">Installer AC (Microsoft Store) / Install AC (Microsoft Store)</a>
+        <p class="hint">Après l’installation, revenez ici et appuyez de nouveau sur « Ouvrir AC ». / After installing, come back here and press “Open AC” again.</p>
+        <a class="link" href="https://apps.microsoft.com/detail/9NDV21MWS379" rel="noopener">Le Store ne s’ouvre pas ? Page web du Store / The Store does not open? Store web page</a>
+        <a class="link" data-web href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
       </div>
+
+      <div data-os="desktop" hidden>
+        <a class="button" data-app href="#">Ouvrir AC / Open AC</a>
+        <a class="button secondary" data-web href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
+      </div>
+
+      <div data-os="other" hidden>
+        <a class="button" data-web href="#" rel="noopener">Ouvrir l’application web / Open the web app</a>
+      </div>
+
+      <p class="hint">Code expiré ? Scannez le code affiché maintenant sur l’ordinateur. / Code expired? Scan the code now shown on the computer.</p>
     </div>
-    <p><a class="link" href="https://pmeig-ac.duckdns.org:18443/downloads/" rel="noopener">Toutes les versions / All versions</a></p>
-  </section>
+  </main>
 
-  <noscript><p>JavaScript est nécessaire pour ouvrir l’application web ; les téléchargements ci-dessus fonctionnent sans. / JavaScript is required to open the web app; the downloads above work without it.</p></noscript>
+  <noscript><p>JavaScript est nécessaire sur cette page. Vous pouvez aussi saisir le code affiché sur l’ordinateur dans <a href="https://pmeig-ac.duckdns.org:18443/executors/pair">l’application web</a>. / JavaScript is required on this page. You can also type the code shown on the computer in <a href="https://pmeig-ac.duckdns.org:18443/executors/pair">the web app</a>.</p></noscript>
 
   <script>
     (function () {
-      // Web app (PWA). The fragment (#code=…&k=…) is appended as it is, never sent to a server.
+      // Set to true once AC is public on Google Play: until then the web app comes first on Android.
+      var PLAY_PUBLIC = false;
       var WEB_APP = 'https://pmeig-ac.duckdns.org:18443/executors/pair';
+      var PLAY = 'https://play.google.com/store/apps/details?id=com.pmeig.ac';
 
-      // Operating system from the user agent. Order matters: Android and iOS also contain "Linux" or "Mac OS X".
+      // Operating system from the user agent. Order matters: Android and iOS also contain "Linux" or "Mac OS X"; an iPad may say "Macintosh".
       function osOf(ua, touchPoints) {
-        if (/iPhone|iPad|iPod/i.test(ua)) return 'other';
-        if (/Android/i.test(ua)) return 'other';
-        if (/Macintosh|Mac OS X/i.test(ua)) return touchPoints > 1 ? 'other' : 'macos';
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+        if (/Android/i.test(ua)) return 'android';
+        if (/Macintosh|Mac OS X/i.test(ua)) return touchPoints > 1 ? 'ios' : 'desktop';
         if (/Windows/i.test(ua) && !/Windows Phone/i.test(ua)) return 'windows';
-        if (/Linux|X11/i.test(ua)) return 'linux';
+        if (/Linux|X11/i.test(ua) && !/CrOS/.test(ua)) return 'desktop';
         return 'other';
       }
 
-      var message = document.getElementById('message');
-      var actions = document.getElementById('actions');
+      function byId(id) { return document.getElementById(id); }
+      function each(selector, set) { Array.prototype.forEach.call(document.querySelectorAll(selector), set); }
 
-      // The detected system comes first; the others stay visible below.
-      var os = osOf(navigator.userAgent, navigator.maxTouchPoints || 0);
-      var mine = document.getElementById('os-' + os);
-      if (mine) mine.className = 'is-mine';
+      window.addEventListener('hashchange', function () { location.reload(); });
 
-      // The fragment holds the pairing code: it is read from location.hash only.
+      // The fragment holds the codes: read from location.hash only, never sent to this site. Only well formed values are passed on.
       var fragment = new URLSearchParams(location.hash.slice(1));
-      if (!fragment.get('code') || !fragment.get('k')) {
-        message.textContent = "Ce lien est incomplet. / This link is incomplete.";
+      var code = (fragment.get('code') || '').trim().toUpperCase();
+      var key = (fragment.get('k') || '').trim().toUpperCase();
+      if (!/^[A-Z0-9]{4}-?[A-Z0-9]{4}$/.test(code)) {
+        byId('message').textContent = 'Ce lien est incomplet : scannez de nouveau le code affiché sur l’ordinateur. / This link is incomplete: scan the code shown on the computer again.';
         return;
       }
+      code = code.replace('-', '');
+      // The machine's own code (k) may be missing: AC then asks you to compare by eye.
+      if (!/^[A-Z0-9]{12}$/.test(key)) key = '';
+      var query = 'code=' + code + (key ? '&k=' + key : '');
 
-      document.getElementById('web').href = WEB_APP + location.hash;
-      actions.hidden = false;
-      message.textContent = "Installez Positron AC ci-dessous, ou ouvrez l’application web. / Install Positron AC below, or open the web app.";
+      var web = WEB_APP + '#' + query;
+      var play = PLAY + '&referrer=' + encodeURIComponent('pair=' + code + (key ? '&k=' + key : ''));
+
+      byId('code').textContent = code.slice(0, 4) + '-' + code.slice(4);
+      each('[data-web]', function (link) { link.href = web; });
+      each('[data-app]', function (link) { link.href = 'asimov-ac:/executors/pair#' + query; });
+      // The intent keeps the "#" for itself: the codes go in the query of the app link, which is not sent to any server.
+      byId('android-open').href = 'intent://executors/pair?' + query + '#Intent;scheme=asimov-ac;package=com.pmeig.ac;S.browser_fallback_url=' + encodeURIComponent(PLAY_PUBLIC ? play : web) + ';end';
+      // While AC is not public on Google Play, the web app is the main button on Android.
+      if (!PLAY_PUBLIC) {
+        byId('android-open').classList.add('secondary');
+        document.querySelector('[data-os="android"] [data-web]').classList.remove('secondary');
+      }
+      var store = byId(PLAY_PUBLIC ? 'android-play' : 'android-testers');
+      store.href = play;
+      store.hidden = false;
+
+      byId('copy').addEventListener('click', function () {
+        var refused = function () { byId('copied').textContent = 'La copie n’a pas abouti : appuyez longuement sur le code affiché. / Copy failed: long-press the code shown.'; };
+        if (!navigator.clipboard) { refused(); return; }
+        navigator.clipboard.writeText(byId('code').textContent).then(function () { byId('copied').textContent = 'Code copié. / Code copied.'; }, refused);
+      });
+
+      document.querySelector('[data-os="' + osOf(navigator.userAgent, navigator.maxTouchPoints || 0) + '"]').hidden = false;
+      byId('ready').hidden = false;
     })();
   </script>
 </body>
