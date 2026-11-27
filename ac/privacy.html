@@ -16,7 +16,8 @@
 <main>
 <section id="fr" lang="fr">
   <h1>AC – Politique de confidentialité</h1>
-  <p>Dernière mise à jour&nbsp;: 23 novembre 2026.</p>
+  <p>Dernière mise à jour&nbsp;: 27 novembre 2026.</p>
+  <p>Quand le fonctionnement change d’une version à l’autre, cette page le précise&nbsp;: la version 0.3 est celle distribuée au 27 novembre 2026&nbsp;; les versions suivantes ne sont pas encore diffusées.</p>
   <p>AC (application Android&nbsp;«&nbsp;Asimov AC&nbsp;» et application web) est un assistant personnel qui se parle à la voix ou par écrit&nbsp;: il répond grâce à l’outil d’intelligence artificielle de <strong>votre propre ordinateur</strong> (par exemple Claude Code ou GitHub Copilot), avec votre propre compte chez le fournisseur de cet outil. Il est édité par <strong>pmeig</strong>, qui exploite aussi le serveur central reliant vos appareils. Le serveur ne contient aucune IA. Aucune publicité, aucune statistique d’usage, aucune revente de données. Cette page décrit ce que fait AC aujourd’hui&nbsp;; ce n’est pas un conseil juridique.</p>
 
   <h2 id="editeur">Qui nous sommes</h2>
@@ -33,6 +34,7 @@
       <tr><td>Les <strong>pièces jointes</strong> que vous ajoutez à un message&nbsp;: photo prise avec l’appareil photo, image, vidéo, fichier ou dossier compressé (10 pièces et 100&nbsp;Mo au plus par message). Nous ne recevons que ce que vous joignez, jamais le reste de votre galerie ou de vos fichiers.</td><td>Les remettre à l’outil d’IA de votre ordinateur avec votre question. Facultatif&nbsp;: seulement si vous en joignez.</td></tr>
       <tr><td>Vos <strong>exécuteurs</strong> (le programme AC installé sur votre ordinateur)&nbsp;: nom, nom de la machine, système, versions, outils d’IA détectés et leur état, mode de partage, dernière connexion</td><td>Relier votre ordinateur au serveur.</td></tr>
       <tr><td>Votre abonnement aux <strong>notifications du navigateur</strong>, si vous les activez</td><td>Vous prévenir qu’une réponse est prête, sans montrer le texte d’un message.</td></tr>
+      <tr><td>Si vous installez l’application Android par le lien Play Store de la page qui associe un ordinateur&nbsp;: ce lien porte le <strong>code de cet ordinateur</strong> (valable 5 minutes) et, quand la page le connaît, son code de vérification. Google voit ce lien. La version 0.3 de l’application ne les lit pas. À partir de la version 0.4, l’application les lit une seule fois, les garde sur le téléphone jusqu’à ce qu’elle ouvre l’association, puis les efface&nbsp;; le code est envoyé au serveur AC pour retrouver l’ordinateur.</td><td>Reprendre l’association après l’installation, sans scanner de nouveau. Seulement dans ce cas.</td></tr>
       <tr><td>Codes d’appairage et d’invitation (10 à 15 minutes), demandes d’inscription et de connexion, liens à usage unique (5 minutes à 1 heure), conservés sous forme d’empreinte</td><td>Associer un appareil ou un exécuteur, inviter quelqu’un, vérifier votre adresse.</td></tr>
       <tr><td>Journaux techniques du serveur&nbsp;: identifiants aléatoires, route demandée, résultat, heure&nbsp;; jamais de nom, de texte de message, de contenu de fichier, de nom de machine ni d’adresse e-mail</td><td>Faire fonctionner et surveiller le serveur.</td></tr>
     </tbody>
@@ -44,7 +46,8 @@
   <h2 id="permissions">Les permissions de l’application Android</h2>
   <ul>
     <li><strong>Caméra</strong>&nbsp;: lire un code QR (ajouter un exécuteur, accepter un nouvel appareil, valider une connexion), ou prendre une photo à joindre à un message. Un code QR lu n’est ni enregistré ni envoyé&nbsp;; une photo n’est gardée que si vous la joignez. La caméra ne s’ouvre que lorsque vous ouvrez le scan ou l’appareil photo.</li>
-    <li><strong>Micro</strong>&nbsp;: dicter un message et entendre le mot d’éveil que vous avez choisi, uniquement si vous activez la voix dans les réglages (désactivée par défaut). Voir «&nbsp;La voix&nbsp;». Si vous activez aussi l’écoute en arrière-plan (désactivée par défaut), une notification permanente reste affichée tant que le micro attend votre mot&nbsp;; vous la coupez par le bouton «&nbsp;Couper&nbsp;».</li>
+    <li><strong>Micro</strong>&nbsp;: dicter un message et entendre le mot d’éveil que vous avez choisi, uniquement si vous activez la voix dans les réglages (désactivée par défaut). Voir «&nbsp;La voix&nbsp;». Dans les versions qui proposent le réglage «&nbsp;Écoute en arrière-plan&nbsp;» (dont la version 0.3), si vous l’activez aussi (désactivé par défaut), une notification permanente reste affichée tant que le micro attend votre mot&nbsp;; vous la coupez par le bouton «&nbsp;Couper&nbsp;». Dans les versions suivantes, qui n’ont plus ce réglage, l’application n’écoute rien quand elle n’est pas à l’écran.</li>
+    <li><strong>Vibration</strong> (versions qui n’ont plus le réglage «&nbsp;Écoute en arrière-plan&nbsp;»)&nbsp;: une courte vibration quand le micro commence à écouter, seulement avec la voix activée, jamais sur un téléphone en silencieux ou en «&nbsp;Ne pas déranger&nbsp;». Cette permission est accordée à l’installation.</li>
     <li><strong>Notifications</strong>&nbsp;: vous prévenir qu’une réponse est prête ou qu’une approbation vous attend, sans jamais montrer le texte d’un message, uniquement si vous les activez (désactivées par défaut).</li>
     <li><strong>Stockage</strong> (Android 8 et 9 seulement)&nbsp;: enregistrer dans Téléchargements un fichier que vous avez touché, au moment où vous le touchez.</li>
     <li><strong>Internet et état du réseau</strong>&nbsp;: parler au serveur AC et garder un message en attente si le réseau manque.</li>
@@ -53,7 +56,7 @@
   <h2 id="voix">La voix</h2>
   <p>La voix est désactivée par défaut et propre à chaque appareil. Le son n’est <strong>jamais</strong> envoyé à notre serveur et n’est jamais enregistré par AC&nbsp;: le serveur ne reçoit que le texte, à l’envoi du message. Où votre voix est reconnue dépend de la fonction&nbsp;:</p>
   <ul>
-    <li><strong>Écoute en arrière-plan</strong> (facultative)&nbsp;: la reconnaissance est faite par AC sur votre téléphone&nbsp;; le son n’en sort pas.</li>
+    <li><strong>Écoute en arrière-plan</strong> (facultative&nbsp;; application Android, versions qui proposent ce réglage, dont la version 0.3)&nbsp;: la reconnaissance est faite par AC sur votre téléphone&nbsp;; le son n’en sort pas. Les versions suivantes n’ont plus cette fonction&nbsp;: l’application Android n’y écoute rien quand elle n’est pas à l’écran.</li>
     <li><strong>Dictée au bouton et mot d’éveil dans une conversation ouverte</strong>&nbsp;: la reconnaissance est faite par votre téléphone. Si un modèle de langue est installé sur l’appareil (le modèle local que vous pouvez installer dans Réglages, Voix, ou celui du téléphone), le son reste sur le téléphone. Sinon, c’est le service de reconnaissance de votre téléphone (celui de son fabricant ou de Google) qui traite le son, selon ses propres conditions&nbsp;; AC vous le dit et demande votre accord dans l’application avant d’écouter.</li>
     <li><strong>Lecture à voix haute des réponses</strong>&nbsp;: faite sur votre appareil, avec les voix du système.</li>
   </ul>
@@ -77,7 +80,7 @@
     <li><strong>Un exécuteur partagé par une autre personne</strong>&nbsp;: si vous choisissez de l’utiliser, le propriétaire de cette machine peut lire le message que vous envoyez, la réponse, et au plus les 40 messages précédents de la conversation. L’application vous le dit chaque fois qu’un tel exécuteur répond. Les droits de lecture donnés pour cela sont supprimés de la base dès que la réponse est terminée, échouée ou annulée.</li>
     <li><strong>Le service de reconnaissance de votre téléphone</strong> (fabricant ou Google), quand la dictée n’a pas de modèle de langue sur l’appareil&nbsp;: il peut traiter le son que vous dictez, selon ses propres conditions, après votre accord dans l’application (voir «&nbsp;La voix&nbsp;»).</li>
     <li><strong>Le téléchargement du modèle de reconnaissance</strong> (fonction facultative) se fait depuis alphacephei.com, qui voit alors l’adresse de votre connexion&nbsp;; il n’a lieu qu’avec votre accord.</li>
-    <li>Pour Copilot, le code à usage unique à saisir sur GitHub passe par la mémoire du serveur (15 minutes au plus, jamais en base ni dans les journaux) pour s’afficher dans votre application.</li>
+    <li>Pour Copilot, le code à usage unique à saisir sur GitHub dépend de la version. Avec le serveur et l’exécuteur en version 0.3, il passe par la mémoire du serveur (15 minutes au plus, jamais en base ni dans les journaux) pour s’afficher dans votre application. À partir de la version 0.4, il s’affiche seulement sur l’ordinateur de l’exécuteur (fenêtre ou terminal) et le serveur ne le reçoit pas&nbsp;; s’il est envoyé par un exécuteur resté en version 0.3, le serveur l’écarte sans le lire.</li>
   </ul>
 
   <h2 id="visibilite">Qui peut voir vos conversations</h2>
@@ -132,14 +135,15 @@
   <p>AC n’est pas destiné aux moins de 16 ans.</p>
 
   <h2 id="modifications">Modifications</h2>
-  <p>Si cette politique change, la date en haut de page change. Dernière mise à jour&nbsp;: 23 novembre 2026.</p>
+  <p>Si cette politique change, la date en haut de page change. Dernière mise à jour&nbsp;: 27 novembre 2026.</p>
 </section>
 
 <hr>
 
 <section id="en" lang="en">
   <h1>AC – Privacy policy</h1>
-  <p>Last updated: 23 November 2026.</p>
+  <p>Last updated: 27 November 2026.</p>
+  <p>Where behaviour differs from one version to another, this page says so: version 0.3 is the one distributed on 27 November 2026; later versions are not released yet.</p>
   <p>AC (the “Asimov AC” Android app and the web app) is a personal assistant you talk or write to: it answers through the AI tool on <strong>your own computer</strong> (for example Claude Code or GitHub Copilot), with your own account with that tool’s provider. It is published by <strong>pmeig</strong>, who also runs the central server that links your devices. The server contains no AI. No ads, no usage statistics, no resale of data. This page describes what AC does today; it is not legal advice.</p>
 
   <h2 id="publisher">Who we are</h2>
@@ -156,6 +160,7 @@
       <tr><td>The <strong>attachments</strong> you add to a message: a photo taken with the camera, an image, a video, a file or a zipped folder (at most 10 items and 100&nbsp;MB per message). We only receive what you attach, never the rest of your gallery or files.</td><td>To hand them to the AI tool on your computer with your question. Optional: only if you attach something.</td></tr>
       <tr><td>Your <strong>executors</strong> (the AC program installed on your computer): name, machine name, system, versions, AI tools detected and their state, sharing mode, last connection</td><td>To link your computer to the server.</td></tr>
       <tr><td>Your <strong>browser notification</strong> subscription, if you turn them on</td><td>To tell you a reply is ready, without showing the text of a message.</td></tr>
+      <tr><td>If you install the Android app through the Play Store link of the page that pairs a computer: that link carries the <strong>code of this computer</strong> (valid for 5 minutes) and, when the page knows it, its verification code. Google sees this link. Version 0.3 of the app does not read them. From version 0.4, the app reads them once, keeps them on the phone until it opens the pairing, then erases them; the code is sent to the AC server to find the computer.</td><td>To resume pairing after the installation, without scanning again. Only in this case.</td></tr>
       <tr><td>Pairing and invitation codes (10 to 15 minutes), sign-up and sign-in requests, single-use links (5 minutes to 1 hour), kept as fingerprints</td><td>To pair a device or an executor, invite someone, verify your address.</td></tr>
       <tr><td>Technical server logs: random identifiers, requested route, result, time; never a name, message text, file content, machine name or email address</td><td>To run and monitor the server.</td></tr>
     </tbody>
@@ -167,7 +172,8 @@
   <h2 id="permissions-en">Android app permissions</h2>
   <ul>
     <li><strong>Camera</strong>: to scan a QR code (adding an executor, accepting a new device, confirming a sign-in), or to take a photo to attach to a message. A scanned QR code is neither recorded nor sent; a photo is kept only if you attach it. The camera opens only when you open the scanner or the camera.</li>
-    <li><strong>Microphone</strong>: to dictate a message and hear the wake word you chose, only if you turn voice on in the settings (off by default). See “Voice”. If you also turn on background listening (off by default), a permanent notification stays visible while the microphone waits for your word; you stop it with the “Stop” button.</li>
+    <li><strong>Microphone</strong>: to dictate a message and hear the wake word you chose, only if you turn voice on in the settings (off by default). See “Voice”. In the versions that offer the “Background listening” setting (including version 0.3), if you also turn it on (off by default), a permanent notification stays visible while the microphone waits for your word; you stop it with the “Stop” button. In later versions, which no longer have this setting, the app listens to nothing when it is not on screen.</li>
+    <li><strong>Vibration</strong> (versions that no longer have the “Background listening” setting): a short vibration when the microphone starts listening, only with voice turned on, never on a phone set to silent or “Do not disturb”. This permission is granted at installation.</li>
     <li><strong>Notifications</strong>: to tell you a reply is ready or an approval is waiting, never showing the text of a message, only if you turn them on (off by default).</li>
     <li><strong>Storage</strong> (Android 8 and 9 only): to save a file you tapped into Downloads, at the moment you tap it.</li>
     <li><strong>Internet and network state</strong>: to talk to the AC server and keep a message waiting when the network is down.</li>
@@ -176,7 +182,7 @@
   <h2 id="voice">Voice</h2>
   <p>Voice is off by default and specific to each device. Sound is <strong>never</strong> sent to our server and never recorded by AC: the server only receives the text, when the message is sent. Where your voice is recognised depends on the feature:</p>
   <ul>
-    <li><strong>Background listening</strong> (optional): recognition is done by AC on your phone; the sound does not leave it.</li>
+    <li><strong>Background listening</strong> (optional; Android app, versions that offer this setting, including version 0.3): recognition is done by AC on your phone; the sound does not leave it. Later versions no longer have this feature: there, the Android app listens to nothing when it is not on screen.</li>
     <li><strong>Dictation by button and wake word in an open conversation</strong>: recognition is done by your phone. If a language model is installed on the device (the local model you can install in Settings, Voice, or the phone’s own), the sound stays on the phone. Otherwise, your phone’s recognition service (its manufacturer’s or Google’s) processes the sound under its own terms; AC tells you and asks for your consent in the app before listening.</li>
     <li><strong>Reading replies aloud</strong>: done on your device, with the system voices.</li>
   </ul>
@@ -200,7 +206,7 @@
     <li><strong>An executor shared by another person</strong>: if you choose to use it, the owner of that machine can read the message you send, the reply, and at most the 40 previous messages of the conversation. The app tells you each time such an executor answers. The read rights granted for this are deleted from the database as soon as the reply ends, fails or is cancelled.</li>
     <li><strong>Your phone’s recognition service</strong> (manufacturer or Google), when dictation has no language model on the device: it may process the sound you dictate, under its own terms, after your consent in the app (see “Voice”).</li>
     <li><strong>Downloading the recognition model</strong> (optional feature) is done from alphacephei.com, which then sees the address of your connection; it only happens with your consent.</li>
-    <li>For Copilot, the one-time code to type on GitHub goes through the server’s memory (15 minutes at most, never in the database or the logs) to be shown in your app.</li>
+    <li>For Copilot, what happens to the one-time code to type on GitHub depends on the version. With the server and the executor at version 0.3, it goes through the server’s memory (15 minutes at most, never in the database or the logs) to be shown in your app. From version 0.4, it is shown only on the executor’s computer (window or terminal) and the server does not receive it; if an executor still at version 0.3 sends it, the server discards it without reading it.</li>
   </ul>
 
   <h2 id="visibility">Who can see your conversations</h2>
@@ -255,7 +261,7 @@
   <p>AC is not aimed at children under 16.</p>
 
   <h2 id="changes">Changes</h2>
-  <p>If this policy changes, the date at the top of the page changes. Last updated: 23 November 2026.</p>
+  <p>If this policy changes, the date at the top of the page changes. Last updated: 27 November 2026.</p>
 </section>
 </main>
 </body>
