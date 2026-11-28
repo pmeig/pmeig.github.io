@@ -16,7 +16,7 @@
 <main>
 <section id="fr" lang="fr">
   <h1>AC – Politique de confidentialité</h1>
-  <p>Dernière mise à jour&nbsp;: 27 novembre 2026.</p>
+  <p>Dernière mise à jour&nbsp;: 28 novembre 2026.</p>
   <p>Quand le fonctionnement change d’une version à l’autre, cette page le précise&nbsp;: la version 0.3 est celle distribuée au 27 novembre 2026&nbsp;; les versions suivantes ne sont pas encore diffusées.</p>
   <p>AC (application Android&nbsp;«&nbsp;Asimov AC&nbsp;» et application web) est un assistant personnel qui se parle à la voix ou par écrit&nbsp;: il répond grâce à l’outil d’intelligence artificielle de <strong>votre propre ordinateur</strong> (par exemple Claude Code ou GitHub Copilot), avec votre propre compte chez le fournisseur de cet outil. Il est édité par <strong>pmeig</strong>, qui exploite aussi le serveur central reliant vos appareils. Le serveur ne contient aucune IA. Aucune publicité, aucune statistique d’usage, aucune revente de données. Cette page décrit ce que fait AC aujourd’hui&nbsp;; ce n’est pas un conseil juridique.</p>
 
@@ -48,7 +48,7 @@
   <h2 id="permissions">Les permissions de l’application Android</h2>
   <ul>
     <li><strong>Caméra</strong>&nbsp;: lire un code QR (ajouter un exécuteur, accepter un nouvel appareil, valider une connexion), ou prendre une photo à joindre à un message. Un code QR lu n’est ni enregistré ni envoyé&nbsp;; une photo n’est gardée que si vous la joignez. La caméra ne s’ouvre que lorsque vous ouvrez le scan ou l’appareil photo.</li>
-    <li><strong>Micro</strong>&nbsp;: dicter un message et entendre le mot d’éveil que vous avez choisi, uniquement si vous activez la voix dans les réglages (désactivée par défaut). Voir «&nbsp;La voix&nbsp;». Dans les versions qui proposent le réglage «&nbsp;Écoute en arrière-plan&nbsp;» (dont la version 0.3), si vous l’activez aussi (désactivé par défaut), une notification permanente reste affichée tant que le micro attend votre mot&nbsp;; vous la coupez par le bouton «&nbsp;Couper&nbsp;». Dans les versions suivantes, qui n’ont plus ce réglage, l’application n’écoute rien quand elle n’est pas à l’écran.</li>
+    <li><strong>Micro</strong>&nbsp;: dicter un message et entendre le mot d’éveil que vous avez choisi, uniquement si vous activez la voix dans les réglages (désactivée par défaut). Voir «&nbsp;La voix&nbsp;». Dans les versions qui proposent le réglage «&nbsp;Écoute en arrière-plan&nbsp;» (dont la version 0.3), si vous l’activez aussi (désactivé par défaut), une notification permanente reste affichée tant que le micro attend votre mot&nbsp;; vous la coupez par le bouton «&nbsp;Couper&nbsp;». Dans les versions suivantes, qui n’ont plus ce réglage, l’application n’écoute rien quand elle n’est pas à l’écran. À partir de la version 0.4, si vous activez aussi «&nbsp;Écouter à l’ouverture&nbsp;» (désactivé par défaut), le micro peut démarrer dès que vous ouvrez l’application.</li>
     <li><strong>Vibration</strong> (versions qui n’ont plus le réglage «&nbsp;Écoute en arrière-plan&nbsp;»)&nbsp;: une courte vibration quand le micro commence à écouter, seulement avec la voix activée, jamais sur un téléphone en silencieux ou en «&nbsp;Ne pas déranger&nbsp;». Cette permission est accordée à l’installation.</li>
     <li><strong>Notifications</strong>&nbsp;: vous prévenir qu’une réponse est prête ou qu’une approbation vous attend, sans jamais montrer le texte d’un message, uniquement si vous les activez (désactivées par défaut).</li>
     <li><strong>Stockage</strong> (Android 8 et 9 seulement)&nbsp;: enregistrer dans Téléchargements un fichier que vous avez touché, au moment où vous le touchez.</li>
@@ -60,6 +60,8 @@
   <ul>
     <li><strong>Écoute en arrière-plan</strong> (facultative&nbsp;; application Android, versions qui proposent ce réglage, dont la version 0.3)&nbsp;: la reconnaissance est faite par AC sur votre téléphone&nbsp;; le son n’en sort pas. Les versions suivantes n’ont plus cette fonction&nbsp;: l’application Android n’y écoute rien quand elle n’est pas à l’écran.</li>
     <li><strong>Dictée au bouton et mot d’éveil dans une conversation ouverte</strong>&nbsp;: la reconnaissance est faite par votre téléphone. Si un modèle de langue est installé sur l’appareil (le modèle local que vous pouvez installer dans Réglages, Voix, ou celui du téléphone), le son reste sur le téléphone. Sinon, c’est le service de reconnaissance de votre téléphone (celui de son fabricant ou de Google) qui traite le son, selon ses propres conditions&nbsp;; AC vous le dit et demande votre accord dans l’application avant d’écouter.</li>
+    <li><strong>Écouter à l’ouverture</strong> (facultative, désactivée par défaut&nbsp;; application Android, à partir de la version 0.4)&nbsp;: la voix et ce réglage activés, la dictée démarre quand vous ouvrez AC par son icône, quand une autre application, par exemple l’assistant de votre téléphone, ouvre AC, ou par le raccourci «&nbsp;Parler&nbsp;». Elle ne démarre pas quand AC est ouverte par un lien, une notification ou les applications récentes, ni après une rotation de l’écran. Elle démarre seulement avec AC à l’écran, sur l’accueil ou une conversation, quand vous êtes connecté, que l’autorisation du micro est déjà donnée et que rien n’a à vous être demandé&nbsp;: si le son peut quitter le téléphone, il faut que vous ayez déjà donné votre accord dans l’application, qui vaut alors à chaque ouverture. Un signal (son ou vibration, selon les réglages du téléphone) indique que le micro écoute&nbsp;; touchez le micro pour l’arrêter. La reconnaissance est la même que pour la dictée au bouton. Le texte reste dans le champ&nbsp;: cette dictée n’envoie rien toute seule.</li>
+    <li><strong>Assistant de votre téléphone</strong> (application Android, à partir de la version 0.4)&nbsp;: AC affiche des phrases que vous pouvez lui donner pour qu’il ouvre AC avec votre mot d’éveil. Vous les copiez ou les dites vous-même&nbsp;; AC ne lui envoie rien. Ce que vous dites ou écrivez à votre assistant (Gemini, de Google, par exemple) est traité par son fournisseur, selon ses propres conditions, en dehors d’AC.</li>
     <li><strong>Lecture à voix haute des réponses</strong>&nbsp;: faite sur votre appareil, avec les voix du système.</li>
   </ul>
   <p>AC n’utilise que le texte reconnu, qui devient le brouillon de votre message.</p>
@@ -142,14 +144,14 @@
   <p>AC n’est pas destiné aux moins de 16 ans.</p>
 
   <h2 id="modifications">Modifications</h2>
-  <p>Si cette politique change, la date en haut de page change. Dernière mise à jour&nbsp;: 27 novembre 2026.</p>
+  <p>Si cette politique change, la date en haut de page change. Dernière mise à jour&nbsp;: 28 novembre 2026.</p>
 </section>
 
 <hr>
 
 <section id="en" lang="en">
   <h1>AC – Privacy policy</h1>
-  <p>Last updated: 27 November 2026.</p>
+  <p>Last updated: 28 November 2026.</p>
   <p>Where behaviour differs from one version to another, this page says so: version 0.3 is the one distributed on 27 November 2026; later versions are not released yet.</p>
   <p>AC (the “Asimov AC” Android app and the web app) is a personal assistant you talk or write to: it answers through the AI tool on <strong>your own computer</strong> (for example Claude Code or GitHub Copilot), with your own account with that tool’s provider. It is published by <strong>pmeig</strong>, who also runs the central server that links your devices. The server contains no AI. No ads, no usage statistics, no resale of data. This page describes what AC does today; it is not legal advice.</p>
 
@@ -181,7 +183,7 @@
   <h2 id="permissions-en">Android app permissions</h2>
   <ul>
     <li><strong>Camera</strong>: to scan a QR code (adding an executor, accepting a new device, confirming a sign-in), or to take a photo to attach to a message. A scanned QR code is neither recorded nor sent; a photo is kept only if you attach it. The camera opens only when you open the scanner or the camera.</li>
-    <li><strong>Microphone</strong>: to dictate a message and hear the wake word you chose, only if you turn voice on in the settings (off by default). See “Voice”. In the versions that offer the “Background listening” setting (including version 0.3), if you also turn it on (off by default), a permanent notification stays visible while the microphone waits for your word; you stop it with the “Stop” button. In later versions, which no longer have this setting, the app listens to nothing when it is not on screen.</li>
+    <li><strong>Microphone</strong>: to dictate a message and hear the wake word you chose, only if you turn voice on in the settings (off by default). See “Voice”. In the versions that offer the “Background listening” setting (including version 0.3), if you also turn it on (off by default), a permanent notification stays visible while the microphone waits for your word; you stop it with the “Stop” button. In later versions, which no longer have this setting, the app listens to nothing when it is not on screen. From version 0.4, if you also turn on “Listen when opening” (off by default), the microphone may start as soon as you open the app.</li>
     <li><strong>Vibration</strong> (versions that no longer have the “Background listening” setting): a short vibration when the microphone starts listening, only with voice turned on, never on a phone set to silent or “Do not disturb”. This permission is granted at installation.</li>
     <li><strong>Notifications</strong>: to tell you a reply is ready or an approval is waiting, never showing the text of a message, only if you turn them on (off by default).</li>
     <li><strong>Storage</strong> (Android 8 and 9 only): to save a file you tapped into Downloads, at the moment you tap it.</li>
@@ -193,6 +195,8 @@
   <ul>
     <li><strong>Background listening</strong> (optional; Android app, versions that offer this setting, including version 0.3): recognition is done by AC on your phone; the sound does not leave it. Later versions no longer have this feature: there, the Android app listens to nothing when it is not on screen.</li>
     <li><strong>Dictation by button and wake word in an open conversation</strong>: recognition is done by your phone. If a language model is installed on the device (the local model you can install in Settings, Voice, or the phone’s own), the sound stays on the phone. Otherwise, your phone’s recognition service (its manufacturer’s or Google’s) processes the sound under its own terms; AC tells you and asks for your consent in the app before listening.</li>
+    <li><strong>Listen when opening</strong> (“Écouter à l’ouverture”; optional, off by default; Android app, from version 0.4): with voice and this setting on, dictation starts when you open AC from its icon, when another app, for example your phone’s assistant, opens AC, or from the “Speak” (“Parler”) shortcut. It does not start when AC is opened by a link, a notification or the recent apps, nor after a screen rotation. It starts only with AC on screen, on the home screen or a conversation, when you are signed in, the microphone permission has already been granted and nothing has to be asked of you: if the sound may leave the phone, you must already have given your consent in the app, which then applies at each opening. A signal (sound or vibration, depending on the phone’s settings) shows that the microphone is listening; tap the microphone to stop it. Recognition is the same as for dictation by button. The text stays in the field: this dictation sends nothing by itself.</li>
+    <li><strong>Your phone’s assistant</strong> (Android app, from version 0.4): AC shows sentences you can give it so that it opens AC with your wake word. You copy or say them yourself; AC sends it nothing. What you say or type to your assistant (Google’s Gemini, for example) is processed by its provider, under its own terms, outside AC.</li>
     <li><strong>Reading replies aloud</strong>: done on your device, with the system voices.</li>
   </ul>
   <p>AC only uses the recognised text, which becomes the draft of your message.</p>
@@ -275,7 +279,7 @@
   <p>AC is not aimed at children under 16.</p>
 
   <h2 id="changes">Changes</h2>
-  <p>If this policy changes, the date at the top of the page changes. Last updated: 27 November 2026.</p>
+  <p>If this policy changes, the date at the top of the page changes. Last updated: 28 November 2026.</p>
 </section>
 </main>
 </body>
